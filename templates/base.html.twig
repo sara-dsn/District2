@@ -2,16 +2,272 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+         <meta name="description" content="The District est un restaurant de cuisine italienne à Amiens, où manger sur place , à emporter ou en livraison 
+    les meilleurs repas. La cuisine indienne fait son apparition dans nos resto , ainsi qu'un côté fast-food avec 
+    les incontournables sandwichs . Prochainement il y  aura des plats asiatiques séléctionné par les meilleurs 
+    cuisinier de the district, à ne pas manquer!">
+    <meta name="keyword" content="resto , amiens , fastfood, restaurant,italien, indien, asiatique, chinois, japonais, grec ,burger ,
+     hamburger, pizza, pasta , pâtes , salade, veggie, végétarien, sandwich, chicken korma ,    ">
+        <title>{% block title %}The District{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="asset/css/style.css">
         {% endblock %}
 
         {% block javascripts %}
-{% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
+ <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+        <script src="asset/js/script.js"></script>
+    <script>
+        $(document).ready(function () {
+
+           var btn=$("#bottom"); 
+           var aff=$("#plats");
+           var visible=$("#visible");
+           var a = $("#afficher");
+           var form=$("#ff");
+           var test=$("#gg");
+           var titre=$("#titre");
+           var affiche = $("#txt");
+           var pp=$("#pp");
+           var affichage = $("#categorie");
+           var tel=$("#smm");
+           var btn2=("#btnplt");
+     form.hide();
+     pp.hide();
+     titre.hide();
+     btn.hide();
+var quantityInput = document.getElementById('quantity');
+var btnPlus = document.getElementById('btn-plus');
+var btnMinus = document.getElementById('btn-minus');
+
+
+// selecteur quantité :
+btnPlus.addEventListener('click', function() {
+  quantityInput.value = parseInt(quantityInput.value) + 1;
+});
+
+btnMinus.addEventListener('click', function() {
+  if (parseInt(quantityInput.value) > 1) {
+    quantityInput.value = parseInt(quantityInput.value) - 1;
+  }
+});
+
+       $.getJSON("plat.json", function (json) {
+         
+                var ctg = json.categorie;
+                var plt = json.plat;
+          
+ // BARRE DE RECHERCHE:  
+           
+$("#btn").click(function () {
+    
+    search();
+
+});
+
+$("#recherche").on("keypress", function (e) {
+    
+    if(e.which===13){
+    e.preventDefault();
+    search();
+};
+}); 
+
+function search() {
+    
+    a.empty();
+    test.empty();
+    visible.hide();
+    btn.show();
+    titre.hide();
+    pp.empty();
+    form.hide();
+    var input = $("#recherche").val();
+
+    $.getJSON("plat.json", function (json) {
+        var plt = json.plat;
+        
+
+    
+            var pla = plt.filter(function (p) {
+                return p.libelle.toLowerCase().includes(input.toLowerCase());
+            });  
+        
+
+    
+        miseajour(pla);
+
+        function miseajour(result) {
+            
+            $.each(result, function (element, uno) {
+                var txt = $( ` 
+            <div class="card   col-10 col-md-2 mx-1  ">
+                <img class="card-img-top rounded img-fluid himg" src="asset/food/${uno.image}" alt="${uno.libelle}">
+                <div class="card-body font-italic ">
+                    <h5 class="card-title  font-weight-bold ">${uno.libelle}</h5>
+                    <p class="card-text ">${uno.description} <br> Menu: ${uno.prix} € </p>
+                </div> <div class="mt-auto mb-2 text-center"><a href="{{path('app_commande')}}&id=${uno.id_plat}" value="${uno.id_plat}" class="btn btn-warning di t">Commander</a></div>
+            </div>`);
+                a.append(txt);
+            });
+        }
+    
+    });
+};
+          
+            //  PLATS AFFICHAGE SELON CATEGORIE CLIQUÉE:                
+$(".cat").click(function () {
+    var id=$(this).find(".id").attr("value");
+              plat(id);
+              btn.show();
+
+          });
+          function plat(id){
+         test.empty();
+         a.empty();
+         pp.empty();
+   
+            $.each(plt, function (element, uno) {
+                var idcat=uno.id_categorie;
+                if (idcat == id){ 
+                            var t = $( ` 
+                        <div class="card size col-12 col-md-3 ml-3 mx-1 ">
+                            <img class="card-img-top rounded himg img-fluid"  src="asset/food/${uno.image}" alt="${uno.libelle}">
+                            <div class="card-body font-italic">
+                                <h5 class="  card-title font-weight-bold ">${uno.libelle}</h5>
+                                <p class="card-text ">${uno.description} <br> Menu: ${uno.prix} € </p>
+                                
+                            </div><div class="mt-auto mb-2 text-center"><a href="{{path('app_commande')}}&id=${uno.id_plat}" value="${uno.id_plat}" class="btn btn-warning di t">Commander</a></div>
+                        </div> 
+                        
+   `);
+visible.hide();
+test.append(t);
+};
+});
+};})});
+    </script>        {% endblock %}
     </head>
     <body>
+        <div class="parallax-body">
+        {% block navbar %}
+        <div class="row w-100 pr-0 pl-0 mr-0 ml-0 d-flex justify-content-between">
+    <div class="col-md-3 col-5">
+        <a  href="{{path('app_accueil')}}" class='lien'><img class="pl-0 pr-0  mt-2  image-fluid col-md-6  rounded" src="{{asset('asset/the_district_brand/linkedin_banner_image_1.png')}}"
+        alt="logo-the-District" ></a>
+     </div>
+    <div class="col-md-9 col-7">
+        <nav class="navbar navbar-expand-sm mt-4  bg-transparent navbar-light d-flex justify-content-end ">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav col-12 ">
+                    <li class="nav-item w-25   ">
+                        <a class="nav-link h2   font-weight-bold font-italic text-right"
+                            href="{{path('app_accueil')}}"><u>Accueil</u></a>
+                    </li>
+                    <li class="nav-item h2  w-25">
+                        <a class="nav-link font-weight-bold font-italic text-right "
+                            href="{{path('app_categorie')}}"><u>Catégorie</u></a>
+                    </li>
+                    <li class="nav-item  h2 w-25 ">
+                        <a class="nav-link font-weight-bold font-italic text-right"
+                            href="{{path('app_plat')}}"><u>Plats</u></a>
+                    </li>
+                    <li class="nav-item  h2 w-25">
+                        <a class="nav-link font-weight-bold font-italic text-right"
+                            href="{{path('app_contact')}}"><u>Contact</u></a>
+                    </li>
+                    <li class="nav-item  h2 w-25">
+                        <a class="nav-link font-weight-bold font-italic text-right"
+                            href="{{path('app_connection')}}"><u>Connection</u></a>
+                    </li>
+                    <li class="nav-item  h2 w-25">
+                        <a class="nav-link font-weight-bold font-italic text-right"
+                            href="{{path('app_panier')}}"><u>Panier</u></a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </nav>
+    </div>
+</div>
+
+<div class="item-content position-relative d-md-none">
+    <img class="img-fluid w-100 mt-2" id="bandeau" src="asset/cat.fond/fond-bordeau.png"alt="bandeau de décoration couleur bordeaux">
+    <div class="position-absolute d-flex justify-content-between w-100 bandeausm">
+        <img class="img-fluid w-25" alt="verre de vin" src="asset/cat.fond/vin.png">
+        <img class="img-fluid w-25" alt="cuisinier" src="asset/cat.fond/petitCuisinier.png">
+    </div>
+</div>
+<div class="item-content position-relative mt-0 d-none d-md-block mt-3 mb-4 ">
+    <video autoplay loop muted playsinline poster="asset/the_district_brand/video.mp4" id="coupe"class=" w-100 ">
+        <source src="asset/the_district_brand/video.mp4" type="video/mp4">
+    </video>
+    <div class="search-bar position-absolute">
+        <nav class="navbar navbar-light bg-transparent d-none d-md-block">
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" id="recherche"
+                    placeholder="rechercher...">
+                <button class="btn btn-outline-danger my-2 my-sm-0" id="btn" type="button">go!</button>
+            </form>
+        </nav>
+
+    </div>
+</div>
+<div class="w-100 d-flex row">
+    <div class="row justify-content-center " id="afficher"></div>
+    </div>
+    <div class="w-100 row d-flex  justify-content-center">            
+        <div class="row col-10 justify-content-center" >
+            <div id="gg" class="row justify-content-center mt-4 "></div>                  
+        </div>
+    </div>
+        {% endblock %}
         {% block body %}{% endblock %}
+        <div class="container-fluid col-12 col-md-3">
+        <div class="row d-flex justify-content-center">
+            <div >
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <img src="asset/the_district_brand/icone.png" usemap="#image-map" class="card-img-top img-fluid"
+                            alt="reseaux sociaux">
+                            <map name="image-map">
+        <area shape="rect" coords="10,100,92,190"  href="#" alt="logo orange">
+        <area shape="rect" coords="92,100,133,190" href="https://www.instagram.com/sara.tdg/" alt="Instagram">
+        <area shape="rect" coords="133,100,192,190" href="#" alt="logo bleu">
+        <area shape="rect" coords="189,100,238,190" href="https://www.google.com" alt="google">
+        <area shape="rect" coords="238,100,295,190" href="https://www.tumblr.com/" alt="tumblr">
+        <area shape="rect" coords="400,100,500,190" href="https://www.pinterest.fr/" alt="pinterest">
+        <area shape="rect" coords="800,400,600,190" href="https://www.facebook.com/?locale=fr_FR" alt="facebook">
+        <area shape="rect" coords="600,400,400,190" href="https://twitter.com/?lang=fr" alt="twitter">
+        <area shape="rect" coords="500,500,500,190" href="https://www.youtube.com/" alt="youtube">
+    </map>
+
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+
+
+    </div>
+
+<div class="container-fluid d-flex justify-content-center col-12 col-md-3">
+    <a class="mr-2 mb-4 text-dark" href="{{path('app_politique')}}">Politique de confidentialité </a>
+    <a class="ml-2 mb-4 text-dark" href="{{path('app_mention')}}"> Mentions légales</a>
+</div>
+</div>
+    </div>
     </body>
 </html>

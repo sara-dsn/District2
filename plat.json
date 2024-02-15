@@ -1,0 +1,157 @@
+
+{
+    "categorie":[
+     {
+      "id_categorie": 4,
+      "libelle": "Pizza",
+      "image": "pizza.webp",
+      "active": "Yes"
+     },
+     {
+      "id_categorie": 5,
+      "libelle": "Burger",
+      "image": "burger.webp",
+      "active": "Yes"
+     },
+     {
+      "id_categorie": 9,
+      "libelle": "Wraps",
+      "image": "wrap.webp",
+      "active": "Yes"
+     },
+     {
+      "id_categorie": 10,
+      "libelle": "Pasta",
+      "image": "pasta.webp",
+      "active": "Yes"
+     },
+
+
+     {
+      "id_categorie": 13,
+      "libelle": "Salade",
+      "image": "salade.webp",
+      "active": "Yes"
+     },
+     {
+      "id_categorie": 14,
+      "libelle": "Veggie",
+      "image": "vegetarien.webp",
+      "active": "Yes"
+     },
+     {
+      "id_categorie": 11,
+      "libelle": "Sandwich",
+      "image": "sandwich.webp",
+      "active": "No"
+     },
+     {
+        "id_categorie": 12,
+        "libelle": "Asian Food",
+        "image": "asiatique.webp",
+        "active": "No"
+       }
+    ],
+    "plat":[
+     {
+      "id_plat": 4,
+      "libelle": "District Burger",
+      "description": "Burger composé d'un bun's du boulanger, deux steaks de 80g (origine française), de deux tranches poitrine de porc fumée, de deux tranches cheddar affiné, salade et oignons confits. .",
+      "prix": 8,
+      "image": "hamburger.webp",
+      "id_categorie": 5,
+      "active": "Yes"
+     },
+     {
+      "id_plat": 5,
+      "libelle": "Pizza Bianca",
+      "description": "Une pizza fine et croustillante garnie de crème mascarpone légèrement citronnée et de tranches de saumon fumé, le tout relevé de baies roses et de basilic frais.",
+      "prix": 14,
+      "image": "pizza-saumon.webp",
+      "id_categorie": 4,
+      "active": "Yes"
+     },
+     {
+      "id_plat": 9,
+      "libelle": "Buffalo Chicken Wrap",
+      "description": "Du bon filet de poulet mariné dans notre spécialité sucrée & épicée, enveloppé dans une tortilla blanche douce faite maison.",
+      "prix": 5,
+      "image": "buffalo.webp",
+      "id_categorie": 9,
+      "active": "Yes"
+     },
+     {
+      "id_plat": 10,
+      "libelle": "Cheeseburger",
+      "description": "Burger composé d’un bun’s du boulanger, de salade, oignons rouges, pickles, oignon confit, tomate, d’un steak d’origine Française, d’une tranche de cheddar affiné, et de notre sauce maison.",
+      "prix": 8,
+      "image": "cheese.webp",
+      "id_categorie": 5,
+      "active": "Yes"
+     },
+     {
+      "id_plat": 12,
+      "libelle": "Spaghetti aux légumes",
+      "description": "Un plat de spaghetti au pesto de basilic et légumes poêlés, très parfumé et rapide",
+      "prix": 10,
+      "image": "spaghetti.webp",
+      "id_categorie": 10,
+      "active": "Yes"
+     },
+     {
+      "id_plat": 13,
+      "libelle": "Salade César",
+      "description": "Une délicieuse salade Caesar (César) composée de filets de poulet grillés, de feuilles croquantes de salade romaine, de croutons à l'ail, de tomates cerise et surtout de sa fameuse sauce Caesar. Le tout agrémenté de copeaux de parmesan.",
+      "prix": 7,
+      "image": "salade_cesare.webp",
+      "id_categorie": 13,
+      "active": "Yes"
+     },
+     {
+      "id_plat": 14,
+      "libelle": "Pizza Margherita",
+      "description": "Une authentique pizza margarita, un classique de la cuisine italienne! Une pâte faite maison, une sauce tomate fraîche, de la mozzarella Fior di latte, du basilic, origan, ail, sucre, sel & poivre...",
+      "prix": 14,
+      "image": "margherita.webp",
+      "id_categorie": 4,
+      "active": "Yes"
+     },
+     {
+      "id_plat": 15,
+      "libelle": "Courgettes farcies au quinoa et duxelles de champignons",
+      "description": "Voici une recette équilibrée à base de courgettes, quinoa et champignons, 100% vegan et sans gluten!",
+      "prix": 8,
+      "image": "courgette.webp",
+      "id_categorie": 14,
+      "active": "Yes"
+     },
+     {
+      "id_plat": 16,
+      "libelle": "Lasagnes",
+      "description": "Découvrez notre recette des lasagnes, l'une des spécialités italiennes que tout le monde aime avec sa viande hachée et gratinée à l'emmental. Et bien sûr, une inoubliable béchamel à la noix de muscade.",
+      "prix": 12,
+      "image": "lasagne.webp",
+      "id_categorie": 10,
+      "active": "Yes"
+     },
+     {
+      "id_plat": 17,
+      "libelle": "Tagliatelles au saumon",
+      "description": "Découvrez notre recette délicieuse de tagliatelles au saumon frais et à la crème qui qui vous assure un véritable régal!",
+      "prix": 12,
+      "image": "tagliatelle.webp",
+      "id_categorie": 10,
+      "active": "Yes"
+     },
+     {
+      "id_plat": 18,
+      "libelle": "Chicken Korma",
+      "description": "Un plat de curry doux composé de morceaux de poitrine de poulet braisés dans une sauce riche et crémeuse à base de yaourt, de noix et d'épices. ",
+      "prix": 10,
+      "image": "Korma.webp",
+      "id_categorie": 17,
+      "active": "Yes"
+     }
+    ]
+    }
+    
