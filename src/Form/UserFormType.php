@@ -18,10 +18,10 @@ class UserFormType extends AbstractType
             ->add('password')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'required'=>true ])
+                'required'=>true, 
+                'label'=>"J'accepte les conditions générales"])
             ->add('save', SubmitType::class,[
-                'label'=>'Envoyer'
-            ])
+                'label'=>'Envoyer'            ])
         ;
     }
 

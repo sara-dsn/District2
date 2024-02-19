@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,6 +24,21 @@ class Commande
 
     #[ORM\Column]
     private ?int $etat = null;
+
+    #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'commande')]
+    private Collection $details;
+
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    private ?utilisateur $commande = null;
+
+
+
+    public function __construct()
+    {
+      
+
+        $this->details = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -60,6 +77,78 @@ class Commande
     public function setEtat(int $etat): static
     {
         $this->etat = $etat;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Detail>
+     */
+    public function getDetails(): Collection
+    {
+        return $this->details;
+    }
+
+    public function addDetail(Detail $detail): static
+    {
+        if (!$this->details->contains($detail)) {
+            $this->details->add($detail);
+            $detail->setDetail($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetail(Detail $detail): static
+    {
+        if ($this->details->removeElement($detail)) {
+            // set the owning side to null (unless already changed)
+            if ($detail->getDetail() === $this) {
+                $detail->setDetail(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCommande(): ?utilisateur
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?utilisateur $commande): static
+    {
+        $this->commande = $commande;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, detail>
+     */
+    public function getPlat(): Collection
+    {
+        return $this->plat;
+    }
+
+    public function addPlat(detail $plat): static
+    {
+        if (!$this->plat->contains($plat)) {
+            $this->plat->add($plat);
+            $plat->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlat(detail $plat): static
+    {
+        if ($this->plat->removeElement($plat)) {
+            // set the owning side to null (unless already changed)
+            if ($plat->getCommande() === $this) {
+                $plat->setCommande(null);
+            }
+        }
 
         return $this;
     }

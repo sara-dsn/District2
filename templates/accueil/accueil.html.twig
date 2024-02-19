@@ -21,21 +21,21 @@
             </div>
 
             <div class="  row  col-10 col-md-8 d" >   
-                {# <?php foreach($ctg as $categorie){
-                    if($categorie->active == 'Disponible' ) { 
-                        $nbr++;?>
+{% for categories in categorie %}                  {#   if($categorie->active == 'Disponible' ) { 
+                        $nbr++;?>#}
                     <div class="t d-none d-md-block cat card custom-card col-3 ml-2 mr-2 mb-4 ">
-                        <img class=" card-img-top taille rounded img-fluid" src="asset/category/<?=$categorie->image?>" alt="<?=$categorie->libelle?>">
+                        <img class=" card-img-top taille rounded img-fluid" src="asset/category/{{ categories.image }}" alt="{{ categories.libelle }}">
                         <div class="card-body pl-3">
-                            <h3 value="<?=$categorie->id?>" class=" titre card-title font-weight-bold font-italic id"><?=$categorie->libelle?></h3>
-                            <span class="stock text-success"><?=$categorie->active?><span>
+                            <h3 value="{{ categories.id }}" class=" titre card-title font-weight-bold font-italic id">{{ categories.libelle }}</h3>
+                            <span class="stock text-success">{{ categories.active }}<span>
                         
                         </div>
                     </div>
-                <?php if ($nbr==6){
+               {#} <?php if ($nbr==6){
                     $nbr=0;
                     break;
                 } }};?>     #}
+                {% endfor %}
             </div>
     
 

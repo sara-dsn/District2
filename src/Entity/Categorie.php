@@ -2,8 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\CategorieRepository;
+use App\Entity\Plat;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CategorieRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 class Categorie
@@ -21,6 +24,18 @@ class Categorie
 
     #[ORM\Column]
     private ?bool $active = null;
+
+  
+
+    #[ORM\OneToMany(targetEntity: Plat::class, mappedBy: 'id_categorie')]
+    private Collection $categorie;
+
+    public function __construct()
+    {
+        $this->categorie = new ArrayCollection();
+        $this->plat = new ArrayCollection();
+
+    }
 
     public function getId(): ?int
     {
@@ -59,6 +74,48 @@ class Categorie
     public function setActive(bool $active): static
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    public function getPlat(): ?categorie
+    {
+        return $this->plat;
+    }
+
+    public function setPlat(?categorie $plat): static
+    {
+        $this->plat = $plat;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, plat>
+     */
+    public function getCategorie(): Collection
+    {
+        return $this->categorie;
+    }
+
+    public function addCategorie(plat $categorie): static
+    {
+        if (!$this->categorie->contains($categorie)) {
+            $this->categorie->add($categorie);
+            $categorie->setCategorie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategorie(plat $categorie): static
+    {
+        if ($this->categorie->removeElement($categorie)) {
+            // set the owning side to null (unless already changed)
+            if ($categorie->getCategorie() === $this) {
+                $categorie->setCategorie(null);
+            }
+        }
 
         return $this;
     }
