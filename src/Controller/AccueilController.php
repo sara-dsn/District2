@@ -17,21 +17,25 @@ class AccueilController extends AbstractController
         $this->platRepo = $platRepo;
 
     }
-    #[Route('/accueil', name: 'app_accueil')]
+    #[Route('/', name: 'app_accueil')]
     public function accueil(): Response
     {
-        $categorie=$this->categorieRepo->findAll();
-        $plat=$this->platRepo->findAll();
+        $categorie=$this->categorieRepo->findBy( [], null ,$limit='6');
+        $plat=$this->platRepo->findBy( [], null ,$limit='3');
+        $platsm=$this->platRepo->findBy( [], null ,$limit='6');
+
         return $this->render('accueil/accueil.html.twig', [
             'categorie'=>$categorie,
-            'plat'=>$plat
+            'plat'=>$plat,
+            'platsm'=>$platsm
 
         ]);
     }
     #[Route('/categorie', name: 'app_categorie')]
     public function categorie(): Response
     {
-        $categorie=$this->categorieRepo->findAll();
+        $categorie=$this->categorieRepo->findBy( [], null ,$limit='6');
+
         return $this->render('accueil/categorie.html.twig', [
         'categorie'=>$categorie
         ]);
@@ -39,7 +43,7 @@ class AccueilController extends AbstractController
     #[Route('/plat', name: 'app_plat')]
     public function plat(): Response
     {
-        $plt=$this->platRepo->findAll();
+        $plt=$this->platRepo->findBy( [], null ,$limit='6');
         return $this->render('accueil/plat.html.twig', [
             'plat'=>$plt
         ]);
