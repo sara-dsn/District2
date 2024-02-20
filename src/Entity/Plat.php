@@ -14,7 +14,7 @@ class Plat
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 60)]
     private ?string $libelle = null;
 
     #[ORM\Column(length: 50)]
@@ -29,11 +29,11 @@ class Plat
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
     private ?string $prix = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'categorie')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?categorie $id_categorie = null;
+    private ?Categorie $categorie = null;
 
- 
+  
     public function getId(): ?int
     {
         return $this->id;
@@ -99,15 +99,17 @@ class Plat
         return $this;
     }
 
-    public function getIdCategorie(): ?categorie
+    public function getCategorie(): ?Categorie
     {
-        return $this->id_categorie;
+        return $this->categorie;
     }
 
-    public function setIdCategorie(?categorie $id_categorie): static
+    public function setCategorie(?Categorie $categorie): static
     {
-        $this->id_categorie = $id_categorie;
+        $this->categorie = $categorie;
 
         return $this;
     }
+
+
 }
