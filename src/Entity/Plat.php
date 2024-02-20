@@ -2,12 +2,9 @@
 
 namespace App\Entity;
 
-use App\Entity\Detail;
+use App\Repository\PlatRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\PlatRepository;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: PlatRepository::class)]
 class Plat
@@ -20,34 +17,23 @@ class Plat
     #[ORM\Column(length: 50)]
     private ?string $libelle = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
-
-    #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
-    private ?string $prix = null;
-
     #[ORM\Column(length: 50)]
     private ?string $image = null;
 
     #[ORM\Column]
     private ?bool $active = null;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $description = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
+    private ?string $prix = null;
+
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?categorie $categorie = null;
+    private ?categorie $id_categorie = null;
 
-    // #[ORM\ManyToOne(inversedBy: 'categorie')]
-    // private ?Categorie $categorie = null;
-
-    #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'details')]
-    private Collection $plat;
  
-
-    public function __construct()
-    {
-        $this->plat = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -61,30 +47,6 @@ class Plat
     public function setLibelle(string $libelle): static
     {
         $this->libelle = $libelle;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): static
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    public function getPrix(): ?string
-    {
-        return $this->prix;
-    }
-
-    public function setPrix(string $prix): static
-    {
-        $this->prix = $prix;
 
         return $this;
     }
@@ -113,44 +75,38 @@ class Plat
         return $this;
     }
 
-    public function getCategorie(): ?Categorie
+    public function getDescription(): ?string
     {
-        return $this->categorie;
+        return $this->description;
     }
 
-    public function setCategorie(?Categorie $categorie): static
+    public function setDescription(string $description): static
     {
-        $this->categorie = $categorie;
+        $this->description = $description;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, detail>
-     */
-    public function getPlat(): Collection
+    public function getPrix(): ?string
     {
-        return $this->plat;
+        return $this->prix;
     }
 
-    public function addPlat(detail $plat): static
+    public function setPrix(string $prix): static
     {
-        if (!$this->plat->contains($plat)) {
-            $this->plat->add($plat);
-            $plat->setPlat($this);
-        }
+        $this->prix = $prix;
 
         return $this;
     }
 
-    public function removePlat(detail $plat): static
+    public function getIdCategorie(): ?categorie
     {
-        if ($this->plat->removeElement($plat)) {
-            // set the owning side to null (unless already changed)
-            if ($plat->getPlat() === $this) {
-                $plat->setPlat(null);
-            }
-        }
+        return $this->id_categorie;
+    }
+
+    public function setIdCategorie(?categorie $id_categorie): static
+    {
+        $this->id_categorie = $id_categorie;
 
         return $this;
     }
