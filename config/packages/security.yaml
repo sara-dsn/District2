@@ -16,9 +16,12 @@ security:
         main:
             lazy: true
             provider: app_user_provider
-            custom_authenticator: App\Security\UserFromAuthenticator
+            # custom_authenticator:
+            #     - App\Security\UserFromAuthenticator
             logout:
                 path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
                 # where to redirect after logout
                 # target: app_any_route
 
@@ -27,7 +30,14 @@ security:
                 lifetime: 604800
                 path: /
                 always_remember_me: true
-
+            form_login:
+                login_path: app_connection
+                check_path: app_connection
+                enable_csrf: true
+            entry_point: form_login
+            json_login:
+                # api_login is a route we will create below
+                check_path: api_login
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 

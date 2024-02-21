@@ -48,4 +48,46 @@ class AccueilController extends AbstractController
             'plat'=>$plt
         ]);
     }
+    #[Route('/contact', name: 'app_contact')]
+    public function contact(): Response
+    {
+        return $this->render('formulaire/contact.html.twig', [
+        ]);
+    }
+    #[Route('/commande', name: 'app_commande')]
+    public function commande(): Response
+    {
+        return $this->render('formulaire/commande.html.twig', [
+        ]);
+    }
+    #[Route('/politique', name: 'app_politique')]
+    public function politique(): Response
+    {
+        return $this->render('RGPD/politique.html.twig', [
+        ]);
+    }
+    #[Route('/mention', name: 'app_mention')]
+    public function mention(): Response
+    {
+        return $this->render('RGPD/mention.html.twig', [
+        ]);
+    }
+    #[Route('/livreur', name: 'app_livreur')]
+    public function livreur(): Response
+    {
+        return $this->render('message/livreur.html.twig', [
+        ]);
+    }
+    #[Route('/demande', name: 'app_demande')]
+    public function demande(): Response
+    {
+        return $this->render('message/demande.html.twig', [
+        ]);
+    }
+    #[Route('/panier', name: 'app_panier')]
+    public function panier(): Response
+    {
+        return $this->render('utilisateur/panier.html.twig', [
+        ]);
+    }
 }
