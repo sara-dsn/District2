@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    alert("a");
     var btn=$("#bottom"); 
     var aff=$("#plats");
     var visible=$("#visible");
@@ -12,117 +13,229 @@ $(document).ready(function () {
     var affichage = $("#categorie");
     var tel=$("#smm");
     var btn2=("#btnplt");
-form.hide();
-pp.hide();
-titre.hide();
-btn.hide();
-var quantityInput = document.getElementById('quantity');
-var btnPlus = document.getElementById('btn-plus');
-var btnMinus = document.getElementById('btn-minus');
+    form.hide();
+    pp.hide();
+    titre.hide();
+    btn.hide();
+    $.getJSON("plat.json", function (json) {
+        var plt = json.plat;
+        var ctg = json.categorie;
+        
+ 
+        // BARRE DE RECHERCHE:  
+        $("#btn").click(function () {
+            search();
+        });
 
+        $("#recherche").on("keypress", function (e) {
+            if(e.which===13){
+                e.preventDefault();
+                search();
+            };
+        }); 
 
-// selecteur quantité :
-btnPlus.addEventListener('click', function() {
-quantityInput.value = parseInt(quantityInput.value) + 1;
-});
+        function search() {
 
-btnMinus.addEventListener('click', function() {
-if (parseInt(quantityInput.value) > 1) {
-quantityInput.value = parseInt(quantityInput.value) - 1;
-}
-});
+            a.empty();
+            test.empty();
+            visible.hide();
+            btn.show();
+            titre.hide();
+            pp.empty();
+            form.hide();
+            var input = $("#recherche").val();
+            var pla = plt.filter(function (p) {
+                return p.libelle.toLowerCase().includes(input.toLowerCase());
+            });  
+            
+            miseajour(pla);
+            function miseajour(result) {
+                $.each(result, function (element, uno) {
+                    var txt = $( ` 
+                        <div class="card   col-10 col-md-2 mx-1  ">
+                            <img class="card-img-top rounded img-fluid himg" src="asset/food/${uno.image}" alt="${uno.libelle}">
+                            <div class="card-body font-italic ">
+                                <h5 class="card-title  font-weight-bold ">${uno.libelle}</h5>
+                                <p class="card-text ">${uno.description} <br> Menu: ${uno.prix} € </p>
+                            </div> <div class="mt-auto mb-2 text-center"><a href="{{path('app_commande')}}&id=${uno.id_plat}" value="${uno.id_plat}" class="btn btn-warning di t">Commander</a></div>
+                        </div>`);
+                    a.append(txt);
+                });
+            }
+        };
+        
+        //  PLATS AFFICHAGE SELON CATEGORIE CLIQUÉE:                
+        $(".cat").click(function () {
+            var id=$(this).find(".id").attr("value");
+            plat(id);
+            btn.show();
+        });
 
-$.getJSON("plat.json", function (json) {
-  
-         var ctg = json.categorie;
-         var plt = json.plat;
-   
-// BARRE DE RECHERCHE:  
+        function plat(id){
+            test.empty();
+            a.empty();
+            pp.empty();
+            $.each(plt, function (element, uno) {
+                var idcat=uno.id_categorie;
+                if (idcat == id){ 
+                    var t = $( ` 
+                    <div class="card size col-12 col-md-3 ml-3 mx-1 ">
+                        <img class="card-img-top rounded himg img-fluid"  src="asset/food/${uno.image}" alt="${uno.libelle}">
+                        <div class="card-body font-italic">
+                            <h5 class="  card-title font-weight-bold ">${uno.libelle}</h5>
+                            <p class="card-text ">${uno.description} <br> Menu: ${uno.prix} € </p>
+                        </div><div class="mt-auto mb-2 text-center"><a href="{{path('app_commande')}}&id=${uno.id_plat}" value="${uno.id_plat}" class="btn btn-warning di t">Commander</a></div>
+                    </div>`);
+                    visible.hide();
+                    test.append(t);
+                };
+            });
+        };
+    });
+
+    //Formulaire contact 
+    $("#monbouton").click(function (e) {
+        
+        contact(e);
+    });
+
+    //Formulaire commande 
+    $("#bouton").click(function (e) {
     
-$("#btn").click(function () {
+        commande(e);
+    });
 
-search();
 
+
+    //Formulaire contact 
+    function contact(e) {
+    
+        // $("#pre").hide();
+        // $("#email").hide();
+        // $("#tel").hide();
+        // $("#dem").hide();
+    
+    
+        var envoi = true;
+        var nom = $("#n").val();
+        if (nom === "") {
+            envoi = false;
+            $("#nom").show();
+            e.preventDefault();
+        }
+        else if (envoi == true) {
+            $("#nom").hide();
+        
+        };
+        var prenom = $("#p").val();
+        if (prenom === "") {
+            
+            envoi = false;
+            $("#pre").show();
+            e.preventDefault();
+        }
+        else if (envoi == true) {
+            $("#pre").hide();
+    
+        };
+    
+    
+        var email = $("#e").val();
+        if (email === "") {
+            
+            envoi = false;
+            $("#email").show();
+            
+            e.preventDefault();
+        
+        }
+        else if (envoi == true) {
+            $("#email").hide();
+        
+        };
+
+
+        var tel = $("#t").val();
+        if (tel === "") {
+        
+            envoi = false;
+            $("#tel").show();
+            e.preventDefault();
+        }
+        else if (envoi == true) {
+            $("#tel").hide();
+        
+        };
+        var demande = $("#d").val();
+        if (demande === "") {
+            envoi = false;
+            $("#dem").show();
+            e.preventDefault();
+        }
+        else if (envoi == true) {
+            $("#dem").hide();
+        
+        };
+    };
+
+
+
+
+
+    //Formulaire commande :
+    function commande(e) {
+    
+        var envoi = true;
+        
+        $("#nompre").hide();
+        $("#email").hide();
+        $("#tel").hide();
+        $("#adresse").hide();
+
+        var nompre = $("#np").val();
+        if (nompre === "") {
+            envoi = false;
+            $("#nompre").show();
+            e.preventDefault();
+        }
+        else if (envoi == true) {
+            $("#nompre").hide();
+        
+        };
+
+
+        var email = $("#e2").val();
+        if (email === "") {
+            envoi = false;
+            $("#email2").show();
+            e.preventDefault();
+        }
+        else if (envoi == true) {
+            $("#email2").hide();
+    
+        };
+
+
+        var tel = $("#t2").val();
+        if (tel === "") {
+            envoi = false;
+            $("#tel2").show();
+            e.preventDefault();
+        }
+        else if (envoi == true) {
+            $("#tel2").hide();
+        
+        };
+
+        var adresse = $("#a").val();
+        if (adresse === "") {
+            envoi = false;
+            $("#adresse").show();
+            e.preventDefault();
+        }
+        else if (envoi == true) {
+            $("#adresse").hide();
+        
+        };
+    };
 });
-
-$("#recherche").on("keypress", function (e) {
-
-if(e.which===13){
-e.preventDefault();
-search();
-};
-}); 
-
-function search() {
-
-a.empty();
-test.empty();
-visible.hide();
-btn.show();
-titre.hide();
-pp.empty();
-form.hide();
-var input = $("#recherche").val();
-
-$.getJSON("plat.json", function (json) {
- var plt = json.plat;
- 
-
-
-     var pla = plt.filter(function (p) {
-         return p.libelle.toLowerCase().includes(input.toLowerCase());
-     });  
- 
-
-
- miseajour(pla);
-
- function miseajour(result) {
-     
-     $.each(result, function (element, uno) {
-         var txt = $( ` 
-     <div class="card   col-10 col-md-2 mx-1  ">
-         <img class="card-img-top rounded img-fluid himg" src="asset/food/${uno.image}" alt="${uno.libelle}">
-         <div class="card-body font-italic ">
-             <h5 class="card-title  font-weight-bold ">${uno.libelle}</h5>
-             <p class="card-text ">${uno.description} <br> Menu: ${uno.prix} € </p>
-         </div> <div class="mt-auto mb-2 text-center"><a href="{{path('app_commande')}}&id=${uno.id_plat}" value="${uno.id_plat}" class="btn btn-warning di t">Commander</a></div>
-     </div>`);
-         a.append(txt);
-     });
- }
-
-});
-};
-   
-     //  PLATS AFFICHAGE SELON CATEGORIE CLIQUÉE:                
-$(".cat").click(function () {
-var id=$(this).find(".id").attr("value");
-       plat(id);
-       btn.show();
-
-   });
-   function plat(id){
-  test.empty();
-  a.empty();
-  pp.empty();
-
-     $.each(plt, function (element, uno) {
-         var idcat=uno.id_categorie;
-         if (idcat == id){ 
-                     var t = $( ` 
-                 <div class="card size col-12 col-md-3 ml-3 mx-1 ">
-                     <img class="card-img-top rounded himg img-fluid"  src="asset/food/${uno.image}" alt="${uno.libelle}">
-                     <div class="card-body font-italic">
-                         <h5 class="  card-title font-weight-bold ">${uno.libelle}</h5>
-                         <p class="card-text ">${uno.description} <br> Menu: ${uno.prix} € </p>
-                         
-                     </div><div class="mt-auto mb-2 text-center"><a href="{{path('app_commande')}}&id=${uno.id_plat}" value="${uno.id_plat}" class="btn btn-warning di t">Commander</a></div>
-                 </div> 
-                 
-`);
-visible.hide();
-test.append(t);
-};
-});
-};})});

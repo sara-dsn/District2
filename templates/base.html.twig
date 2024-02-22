@@ -2,144 +2,116 @@
 <html>
     <head>
         <meta charset="UTF-8">
-         <meta name="description" content="The District est un restaurant de cuisine italienne à Amiens, où manger sur place , à emporter ou en livraison 
-    les meilleurs repas. La cuisine indienne fait son apparition dans nos resto , ainsi qu'un côté fast-food avec 
-    les incontournables sandwichs . Prochainement il y  aura des plats asiatiques séléctionné par les meilleurs 
-    cuisinier de the district, à ne pas manquer!">
-    <meta name="keyword" content="resto , amiens , fastfood, restaurant,italien, indien, asiatique, chinois, japonais, grec ,burger ,
-     hamburger, pizza, pasta , pâtes , salade, veggie, végétarien, sandwich, chicken korma ,    ">
+        <meta name="description" content="The District est un restaurant de cuisine italienne à Amiens, où manger sur place , à emporter ou en livraison 
+        les meilleurs repas. La cuisine indienne fait son apparition dans nos resto , ainsi qu'un côté fast-food avec 
+        les incontournables sandwichs . Prochainement il y  aura des plats asiatiques séléctionné par les meilleurs 
+        cuisinier de the district, à ne pas manquer!">
+        <meta name="keyword" content="resto , amiens , fastfood, restaurant,italien, indien, asiatique, chinois, japonais, grec ,burger ,
+        hamburger, pizza, pasta , pâtes , salade, veggie, végétarien, sandwich, chicken korma ,    ">
         <title>{% block title %}The District{% endblock %}</title>
         <link rel="icon" href="{{ asset('asset/the_district_brand/youtube_profile_image.png')}}">
         {% block stylesheets %}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('asset/css/style.css')}}">
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+            <link rel="stylesheet" href="{{ asset('asset/css/style.css') }}">
         {% endblock %}
-
         {% block javascripts %}
- <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-        <script src="{{asset('asset/js/script.js')}}"></script>
-    <script src="{{asset('asset/js/base.js')}}"></script>        
-    {% endblock %}
+            <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+            <script src="{{ asset('asset/js/base.js') }}"></script>        
+        {% endblock %}
     </head>
     <body>
         <div class="parallax-body">
-        {% block navbar %}
-        <div class="row w-100 pr-0 pl-0 mr-0 ml-0 d-flex justify-content-between">
-    <div class="col-md-3 col-5">
-        <a  href="{{path('app_accueil')}}" class='lien'><img class="pl-0 pr-0  mt-2  image-fluid col-md-6  rounded" src="{{asset('asset/the_district_brand/linkedin_banner_image_1.png')}}"
-        alt="logo-the-District" ></a>
-     </div>
-    <div class="col-md-9 col-7">
-        <nav class="navbar navbar-expand-sm mt-4  bg-transparent navbar-light d-flex justify-content-end ">
+            {% block navbar %}
+                <div class="row w-100 pr-0 pl-0 mr-0 ml-0 d-flex justify-content-between">
+                    <div class="col-md-3 col-5">
+                        <a  href="{{path('app_accueil')}}" class='lien'><img class="pl-0 pr-0  mt-2  image-fluid col-md-6  rounded" src="{{asset('asset/the_district_brand/linkedin_banner_image_1.png')}}"alt="logo-the-District" ></a>
+                    </div>
+                    <div class="col-md-9 col-7">
+                        <nav class="navbar navbar-expand-sm mt-4  bg-transparent navbar-light d-flex justify-content-end ">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"data-target="#collapsibleNavbar">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                                <ul class="navbar-nav col-12 ">
+                                    <li class="nav-item w-25   ">
+                                        <a class="nav-link h2   font-weight-bold font-italic text-right"href="{{path('app_accueil')}}"><u>Accueil</u></a>
+                                    </li>
+                                    <li class="nav-item h2  w-25">
+                                        <a class="nav-link font-weight-bold font-italic text-right "href="{{path('app_categorie')}}"><u>Catégorie</u></a>
+                                    </li>
+                                    <li class="nav-item  h2 w-25 ">
+                                        <a class="nav-link font-weight-bold font-italic text-right"href="{{path('app_plat')}}"><u>Plats</u></a>
+                                    </li>
+                                    <li class="nav-item  h2 w-25">
+                                        <a class="nav-link font-weight-bold font-italic text-right"href="{{path('app_contact')}}"><u>Contact</u></a>
+                                    </li>
+                                    <li class="nav-item  h2 w-25">
+                                        <a class="nav-link font-weight-bold font-italic text-right"href="{{path('app_connection')}}"><u>Connection</u></a>
+                                    </li>
+                                    <li class="nav-item  h2 w-25">
+                                        <a class="nav-link font-weight-bold font-italic text-right"href="{{path('app_panier')}}"><u>Panier</u></a>
+                                    </li>
+                                </ul>
+                            </div>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#collapsibleNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav col-12 ">
-                    <li class="nav-item w-25   ">
-                        <a class="nav-link h2   font-weight-bold font-italic text-right"
-                            href="{{path('app_accueil')}}"><u>Accueil</u></a>
-                    </li>
-                    <li class="nav-item h2  w-25">
-                        <a class="nav-link font-weight-bold font-italic text-right "
-                            href="{{path('app_categorie')}}"><u>Catégorie</u></a>
-                    </li>
-                    <li class="nav-item  h2 w-25 ">
-                        <a class="nav-link font-weight-bold font-italic text-right"
-                            href="{{path('app_plat')}}"><u>Plats</u></a>
-                    </li>
-                    <li class="nav-item  h2 w-25">
-                        <a class="nav-link font-weight-bold font-italic text-right"
-                            href="{{path('app_contact')}}"><u>Contact</u></a>
-                    </li>
-                    <li class="nav-item  h2 w-25">
-                        <a class="nav-link font-weight-bold font-italic text-right"
-                            href="{{path('app_connection')}}"><u>Connection</u></a>
-                    </li>
-                    <li class="nav-item  h2 w-25">
-                        <a class="nav-link font-weight-bold font-italic text-right"
-                            href="{{path('app_panier')}}"><u>Panier</u></a>
-                    </li>
-
-                </ul>
-            </div>
-
-        </nav>
-    </div>
-</div>
-
-<div class="item-content position-relative d-md-none">
-    <img class="img-fluid w-100 mt-2" id="bandeau" src="asset/cat.fond/fond-bordeau.png"alt="bandeau de décoration couleur bordeaux">
-    <div class="position-absolute d-flex justify-content-between w-100 bandeausm">
-        <img class="img-fluid w-25" alt="verre de vin" src="asset/cat.fond/vin.png">
-        <img class="img-fluid w-25" alt="cuisinier" src="asset/cat.fond/petitCuisinier.png">
-    </div>
-</div>
-<div class="item-content position-relative mt-0 d-none d-md-block mt-3 mb-4 ">
-    <video autoplay loop muted playsinline poster="asset/the_district_brand/video.mp4" id="coupe"class=" w-100 ">
-        <source src="asset/the_district_brand/video.mp4" type="video/mp4">
-    </video>
-    <div class="search-bar position-absolute">
-        <nav class="navbar navbar-light bg-transparent d-none d-md-block">
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" id="recherche"
-                    placeholder="rechercher...">
-                <button class="btn btn-outline-danger my-2 my-sm-0" id="btn" type="button">go!</button>
-            </form>
-        </nav>
-
-    </div>
-</div>
-<div class="w-100 d-flex row">
-    <div class="row justify-content-center " id="afficher"></div>
-    </div>
-    <div class="w-100 row d-flex  justify-content-center">            
-        <div class="row col-10 justify-content-center" >
-            <div id="gg" class="row justify-content-center mt-4 "></div>                  
-        </div>
-    </div>
-        {% endblock %}
-        {% block body %}{% endblock %}
-        <div class="container-fluid col-12 col-md-3">
-        <div class="row d-flex justify-content-center">
-            <div >
-                <div class="card border-0 bg-transparent">
-                    <div class="card-body">
-                        <img src="asset/the_district_brand/icone.png" usemap="#image-map" class="card-img-top img-fluid"
-                            alt="reseaux sociaux">
-                            <map name="image-map">
-        <area shape="rect" coords="10,100,92,190"  href="#" alt="logo orange">
-        <area shape="rect" coords="92,100,133,190" href="https://www.instagram.com/sara.tdg/" alt="Instagram">
-        <area shape="rect" coords="133,100,192,190" href="#" alt="logo bleu">
-        <area shape="rect" coords="189,100,238,190" href="https://www.google.com" alt="google">
-        <area shape="rect" coords="238,100,295,190" href="https://www.tumblr.com/" alt="tumblr">
-        <area shape="rect" coords="400,100,500,190" href="https://www.pinterest.fr/" alt="pinterest">
-        <area shape="rect" coords="800,400,600,190" href="https://www.facebook.com/?locale=fr_FR" alt="facebook">
-        <area shape="rect" coords="600,400,400,190" href="https://twitter.com/?lang=fr" alt="twitter">
-        <area shape="rect" coords="500,500,500,190" href="https://www.youtube.com/" alt="youtube">
-    </map>
-
+                        </nav>
                     </div>
                 </div>
+                <div class="item-content position-relative d-md-none">
+                    <img class="img-fluid w-100 mt-2" id="bandeau" src="asset/cat.fond/fond-bordeau.png"alt="bandeau de décoration couleur bordeaux">
+                    <div class="position-absolute d-flex justify-content-between w-100 bandeausm">
+                        <img class="img-fluid w-25" alt="verre de vin" src="asset/cat.fond/vin.png">
+                        <img class="img-fluid w-25" alt="cuisinier" src="asset/cat.fond/petitCuisinier.png">
+                    </div>
+                </div>
+                <div class="item-content position-relative mt-0 d-none d-md-block mt-3 mb-4 ">
+                    <video autoplay loop muted playsinline poster="asset/the_district_brand/video.mp4" id="coupe"class=" w-100 ">
+                        <source src="asset/the_district_brand/video.mp4" type="video/mp4">
+                    </video>
+                    <div class="search-bar position-absolute">
+                        <nav class="navbar navbar-light bg-transparent d-none d-md-block">
+                            <form class="form-inline">
+                                <input class="form-control mr-sm-2" type="search" id="recherche"placeholder="rechercher...">
+                                <button class="btn btn-outline-danger my-2 my-sm-0" id="btn" type="button">go!</button>
+                            </form>
+                        </nav>
+                    </div>
+                </div>
+                <div class="w-100 d-flex row">
+                    <div class="row justify-content-center " id="afficher"></div>
+                </div>
+                <div class="w-100 row d-flex  justify-content-center">            
+                    <div class="row col-10 justify-content-center" >
+                        <div id="gg" class="row justify-content-center mt-4 "></div>                  
+                    </div>
+                </div>
+            {% endblock %}
+            {% block body %}{% endblock %}
+            {# <div class="container-fluid col-12 col-md-3">
+                <div class="row d-flex justify-content-center">
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body">
+                            <img src="asset/the_district_brand/icone.png" usemap="#image-map" class="card-img-top img-fluid"alt="reseaux sociaux">
+                            <map name="image-map">
+                                <area shape="rect" coords="10,100,92,190"  href="#" alt="logo orange">
+                                <area shape="rect" coords="92,100,133,190" href="https://www.instagram.com/sara.tdg/" alt="Instagram">
+                                <area shape="rect" coords="133,100,192,190" href="#" alt="logo bleu">
+                                <area shape="rect" coords="189,100,238,190" href="https://www.google.com" alt="google">
+                                <area shape="rect" coords="238,100,295,190" href="https://www.tumblr.com/" alt="tumblr">
+                                <area shape="rect" coords="400,100,500,190" href="https://www.pinterest.fr/" alt="pinterest">
+                                <area shape="rect" coords="800,400,600,190" href="https://www.facebook.com/?locale=fr_FR" alt="facebook">
+                                <area shape="rect" coords="600,400,400,190" href="https://twitter.com/?lang=fr" alt="twitter">
+                                <area shape="rect" coords="500,500,500,190" href="https://www.youtube.com/" alt="youtube">
+                            </map>
+                        </div>
+                    </div>
+                </div>
+            </div> #}
+            <div class="container-fluid d-flex justify-content-center col-12 col-md-3">
+                <a class="mr-2 mb-4 text-dark" href="{{path('app_politique')}}">Politique de confidentialité </a>
+                <a class="ml-2 mb-4 text-dark" href="{{path('app_mention')}}"> Mentions légales</a>
             </div>
-            
-
         </div>
-
-
-    </div>
-
-<div class="container-fluid d-flex justify-content-center col-12 col-md-3">
-    <a class="mr-2 mb-4 text-dark" href="{{path('app_politique')}}">Politique de confidentialité </a>
-    <a class="ml-2 mb-4 text-dark" href="{{path('app_mention')}}"> Mentions légales</a>
-</div>
-</div>
-    </div>
     </body>
 </html>

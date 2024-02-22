@@ -1,0 +1,12 @@
+// var quantityInput = document.getElementById('quantity');
+        // var btnPlus = document.getElementById('btn-plus');
+        // var btnMinus = document.getElementById('btn-minus');
+        // // selecteur quantité :
+        // btnPlus.addEventListener('click', function() {
+        //     quantityInput.value = parseInt(quantityInput.value) + 1;
+        // });
+        // btnMinus.addEventListener('click', function() {
+        //     if (parseInt(quantityInput.value) > 1) {
+        //         quantityInput.value = parseInt(quantityInput.value) - 1;
+        //     }
+        // });
