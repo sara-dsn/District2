@@ -6,8 +6,10 @@ use App\Entity\User;
 use App\Security\EmailVerifier;
 use App\Form\RegistrationFormType;
 use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Part\File;
 use App\Security\UserFromAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Mime\Part\DataPart;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -29,7 +31,7 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/inscription', name: 'app_inscription')]
-    public function register(MailerInterface $mailer ,Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserFromAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UserFromAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -54,9 +56,15 @@ class RegistrationController extends AbstractController
                     ->to($user->getEmail())
                     ->subject("Confirmer votre email s'il vous plaît")
                     ->htmlTemplate('registration/confirmation_email.html.twig')
-            );
+                    // ->addPart(new DataPart(new File('/path/to/documents/terms-of-use.pdf')))
+                    // optionally you can tell email clients to display a custom name for the file
+                    // ->addPart(new DataPart(new File('/public/asset/cat.fond/petitCuisinier.png'), 'Privacy Policy'))
+                    // optionally you can provide an explicit MIME type (otherwise it's guessed)
+                    // ->addPart(new DataPart(new File('/path/to/documents/contract.doc'), 'Contract', 'application/msword')
+                );
+            
             // do anything else you need here, like send an email
-            $mailer->send($email);
+            // $mailer->send($email);
 
             return $userAuthenticator->authenticateUser(
                 $user,
