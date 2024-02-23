@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    alert("abracadabra");
+    //alert("abracadabra");
     var btn=$("#bottom"); 
     var btn3=$("#btnplt");
     var aff=$("#plats");
@@ -37,7 +37,7 @@ $(document).ready(function () {
         }); 
 
         function search() {
-
+            btn3.show();
             a.empty();
             test.empty();
             visible.hide();
@@ -90,7 +90,7 @@ $(document).ready(function () {
                     </div>`);
                     visible.hide();
                     test.append(t);
-                    pp.show();
+                    btn3.show();
 
                 };
             });
