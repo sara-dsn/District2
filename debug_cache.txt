@@ -1,12 +1,16 @@
+// (c'est le premier protovole qui avait fonctionné:)
 //bin/console cache:clear
 //APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear
 //git add .
 //git commit -m "district commit debug"
 //git push
 
- Ce sont ces deux lignes qui débloque mon code :
+
+C'est cette ligne de code qui débloque mon code :
+
 APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear
-bin/console cache:clear
 
 
+
+//bin/console cache:clear
 //symfony serve
