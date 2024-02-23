@@ -1,7 +1,8 @@
 $(document).ready(function () {
 
-    alert("a");
+    alert("abracadabra");
     var btn=$("#bottom"); 
+    var btn3=$("#btnplt");
     var aff=$("#plats");
     var visible=$("#visible");
     var a = $("#afficher");
@@ -16,6 +17,7 @@ $(document).ready(function () {
     form.hide();
     pp.hide();
     titre.hide();
+    btn3.hide();
     btn.hide();
     $.getJSON("plat.json", function (json) {
         var plt = json.plat;
@@ -88,6 +90,8 @@ $(document).ready(function () {
                     </div>`);
                     visible.hide();
                     test.append(t);
+                    pp.show();
+
                 };
             });
         };
