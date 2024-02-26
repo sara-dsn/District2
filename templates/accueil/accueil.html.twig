@@ -47,12 +47,12 @@
                       {% for plt in plat %}
                       {% if plt.active == 1 %}
                 <div class="card col-12  pb-2 ml-1 mb-1 mr-1 col-md-3 ">
-                    <img class="card-img-top img-fluid rounded himg" src="asset/food/{{ plt.image }}" alt="<?=$plat->libelle?>">
+                    <img class="card-img-top img-fluid rounded himg" src="asset/food/{{ plt.image }}" alt="{{ plt.libelle }}">
                     <div class="card-body font-italic">
                         <h5 class="card-title font-weight-bold">{{ plt.libelle }}</h5>
                         <p class="card-text ">{{ plt.description }} <br> Menu: {{ plt.prix }} €</p><br>
                     </div>
-                    <div class="mt-auto  text-center"> <a href="{{path('app_commande')}}" id="btnplt" type="submit" value="{{ plt.id }}" class="btn btn-warning di t">Commander</a></div>
+                    <div class="mt-auto  text-center"> <a href="{{ path('app_panier',{'id':plt.id}) }}" id="btnplt" type="submit" value="{{ plt.id }}" class="btn btn-warning di t">Ajouter au panier</a></div>
                 </div>
                 {% endif %}
     {% endfor %}
@@ -74,7 +74,7 @@
                         <h5 class="card-title font-weight-bold">{{ plt.libelle }}</h5>
                         <p class="card-text ">{{ plt.description }} <br> Menu: {{ plt.prix }} €</p><br>
                     </div>
-                    <div class="mt-auto  text-center"> <a href="app_commande&id={{ plt.id }}" id="btnplt" type="submit" value="{{ plt.id }}" class="btn btn-warning di t">Commander</a></div>
+                    <div class="mt-auto  text-center"> <a href="{{ path('app_panier',{'id':plt.id}) }}" id="btnplt" type="submit" name="id" value="{{ plt.id }}" class="btn btn-warning di t">Ajouter au panier</a></div>
                 </div>
     {% endfor %}
             </div>

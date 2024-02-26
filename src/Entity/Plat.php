@@ -33,6 +33,8 @@ class Plat
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $categorie = null;
 
+
+
   
     public function getId(): ?int
     {
@@ -110,6 +112,8 @@ class Plat
 
         return $this;
     }
+
+
 
 
 }

@@ -21,6 +21,22 @@
                 </div>
                
                 <div class="d-flex justify-content-center">
+               {% for plt in plat %}
+                  <div class="card  col-10 col-md-2 ">
+        <img class="card-img-top img-fluid mt-2"  value="" src="asset/food/{{ plt.image}}" alt="burger360">
+            <div class="card-body">
+            <h5 class="card-title font-weight-bold" >{{ plt.libelle}}</h5>
+            <p class="card-text"  value="{{ plt.prix}}">{{ plt.description}}<br> Total : {{ plt.prix}} €</p>
+            <div class="input-group  ">
+                <label type="quantity">Quantité : </label>
+                <input type="text" class="form-control rounded col-2" name="quantity" id="quantity" value="1">
+
+</div>
+
+        </div>
+    </div>
+</div>
+                {% endfor %}
 {# <?php 
 if(isset($_GET["id"])){
    foreach($plt as $element){

@@ -23,7 +23,7 @@
                         <h5 class="card-title font-weight-bold">{{ plt.libelle }}</h5>
                         <p class="card-text ">{{ plt.description }} <br> Menu: {{ plt.prix }} €</p><br>
                     </div>
-                    <div class="mt-auto  text-center"> <a href="app_commande&id={{ plt.id }}" id="btnplt" type="submit" value="{{ plt.id }}" class="btn btn-warning di t">Commander</a></div>
+                    <div class="mt-auto  text-center"> <a href="{{ path('app_commande',{'id':plt.id}) }}" id="btnplt" type="submit" value="{{ plt.id }}" class="btn btn-warning di t">Commander</a></div>
                 </div>
     {% endfor %}
            {#} <?php if($nbr == 6){

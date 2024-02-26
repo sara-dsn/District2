@@ -2,19 +2,24 @@
 
 namespace App\Controller;
 
-use App\Repository\CategorieRepository;
 use App\Repository\PlatRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\DetailRepository;
+use App\Repository\CategorieRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AccueilController extends AbstractController
 {
+    private $detailRepo;
     private $categorieRepo;
     private $platRepo;
-    public function __construct(CategorieRepository $categorieRepo, PlatRepository $platRepo){
+    public function __construct(CategorieRepository $categorieRepo, PlatRepository $platRepo, DetailRepository $detailRepo){
         $this->categorieRepo = $categorieRepo;
         $this->platRepo = $platRepo;
+        $this->detailRepo =$detailRepo;
 
     }
     #[Route('/', name: 'app_accueil')]
@@ -58,6 +63,7 @@ class AccueilController extends AbstractController
     public function commande(): Response
     {
         return $this->render('formulaire/commande.html.twig', [
+        
         ]);
     }
     #[Route('/politique', name: 'app_politique')]
@@ -85,9 +91,17 @@ class AccueilController extends AbstractController
         ]);
     }
     #[Route('/panier', name: 'app_panier')]
-    public function panier(): Response
+    public function panier(Request $request,EntityManagerInterface $entityManager, PlatRepository $platRepo): Response
     {
+
+        $id = $request->query->get('id');
+
+        $plat=$platRepo->find($id);        
+        // $detail=$this->detailRepo->findAll();
+        // $detail->addPlat($plat);
+
         return $this->render('utilisateur/panier.html.twig', [
+            "plt"=>$plat
         ]);
     }
 }

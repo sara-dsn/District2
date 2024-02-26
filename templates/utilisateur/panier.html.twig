@@ -12,6 +12,20 @@
         <div class="col-10 justify-content-center mt-4 ">
             <h2>Votre Panier : </h2>
 <br>
+                  <div class="card  col-10 col-md-2 ">
+        <img class="card-img-top img-fluid mt-2"  value="" src="asset/food/{{ plt.image}}" alt="burger360">
+            <div class="card-body">
+            <h5 class="card-title font-weight-bold" >{{ plt.libelle}}</h5>
+            <p class="card-text"  value="{{ plt.prix}}">{{ plt.description}}<br> Total : {{ plt.prix}} €</p>
+            <div class="input-group  ">
+                <label type="quantity">Quantité : </label>
+                <input type="text" class="form-control rounded col-2" name="quantity" id="quantity" value="1">
+
+</div>
+
+        </div>
+    </div>
+</div>
 {# <?php
     if(!isset($_POST)){ ?>
         <p>Il est vide .</p> 
@@ -42,5 +56,5 @@
           </div>
           </div>
          <div class="w-100 d-flex justify-content-center"> <a type="submit" class="btn btn-dark t " href="{{path('app_accueil')}}">Retourner sur la page d'acceuil</a></div>
-        </div>
+        
      {% endblock %}

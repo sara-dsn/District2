@@ -16,6 +16,9 @@ class Detail
     #[ORM\Column]
     private ?int $quantite = null;
 
+    #[ORM\ManyToOne]
+    private ?plat $plats = null;
+
    
     public function getId(): ?int
     {
@@ -30,6 +33,19 @@ class Detail
     public function setQuantite(int $quantite): static
     {
         $this->quantite = $quantite;
+
+        
+        return $this;
+    }
+
+    public function getPlats(): ?plat
+    {
+        return $this->plats;
+    }
+
+    public function setPlats(?plat $plats): static
+    {
+        $this->plats = $plats;
 
         return $this;
     }
