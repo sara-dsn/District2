@@ -18,21 +18,17 @@
 
         <div class=" row col-10 col-md-8 mb-4 " >
            {% for categories in categorie %}
-                {# if($categorie->active == 'Disponible' ) { 
-                    $nbr++;?> #}
+    
                 <div class="t cat card custom-card col-12 col-md-3 ml-2 mr-2 mb-4 ">
                     <img class=" card-img-top taille rounded img-fluid" src="asset/category/{{ categories.image }}" alt="{{ categories.libelle }}">
                     <div class="card-body pl-3"> 
                         <h3 value="{{ categories.id }}" class=" titre card-title font-weight-bold font-italic id">{{ categories.libelle }}</h3>
-                        <span class="stock text-success">{{ categories.active }}<span>
+                        <span class="stock text-success">Disponible<span>
                     
                     </div>
                 </div>
                 {% endfor %}
-            {# {#<?php if ($nbr==6){
-                $nbr=0;
-                break;
-            } }};?>          #}
+         
         </div>
     
     </div>
