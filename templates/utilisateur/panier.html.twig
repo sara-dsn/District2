@@ -1,31 +1,45 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 <div id="visible">
-      <div class="container-fluid col-12 mb-4 mt-1 d-flex  ">
-        <div class="col-2 d-none d-md-block ">
-           <div class="card border-0 bg-transparent  ">
-            <div class="card-body">
-               <img src="asset/cat.fond/cuisinier.png" class="card-img-top img-fluid  " alt="Cuisinier">
-             </div>
-           </div>
+  <div class="container-fluid col-12 mb-4 mt-1 d-flex  ">
+    <div class="col-2 d-none d-md-block ">
+      <div class="card border-0 bg-transparent  ">
+        <div class="card-body">
+          <img src="asset/cat.fond/cuisinier.png" class="card-img-top img-fluid  " alt="Cuisinier">
         </div>
-        <div class="col-10 justify-content-center mt-4 ">
-            <h2>Votre Panier : </h2>
-<br>
-                  <div class="card  col-10 col-md-2 ">
-        <img class="card-img-top img-fluid mt-2"  value="" src="asset/food/{{ plt.image}}" alt="burger360">
-            <div class="card-body">
-            <h5 class="card-title font-weight-bold" >{{ plt.libelle}}</h5>
-            <p class="card-text"  value="{{ plt.prix}}">{{ plt.description}}<br> Total : {{ plt.prix}} €</p>
-            <div class="input-group  ">
-                <label type="quantity">Quantité : </label>
-                <input type="text" class="form-control rounded col-2" name="quantity" id="quantity" value="1">
-
-</div>
-
-        </div>
+      </div>
     </div>
-</div>
+    <div class="col-10 mt-4 ">
+      <h2 class="font-weight-bolder">Votre Panier : </h2><br>
+      {% if plt is empty %}
+      <h4>{{ vide }}</h4>
+      <div class="d-flex justify-content-start mr-5">
+        <div class="col-5 mr-5"><img class='img-fluid mt-2'  src='asset/cat.fond/panier.png' alt='panier'></div>
+      </div>
+      {% else %}
+      <table class="table table-striped ">
+        <thead>
+          <tr>
+            <th>Photo</th>
+            <th>libelle</th>
+            <th>Description</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><img class="img-fluid mt-2"  src="asset/food/{{ plt.image}}" alt="{{ plt.libelle}}"></td>
+            <td><h5 class="font-weight-bold" >{{ plt.libelle}}</h5></td>
+            <td>{{ plt.description}}</td>
+            <td>{{ plt.prix}} €</td>
+            <td><input type="text" class="form-control rounded col-2" name="quantity" id="quantity" value="1"></td>
+          </tr>
+        </tbody>
+      </table>
+      {% endif %}
+    </div> 
+
 {# <?php
     if(!isset($_POST)){ ?>
         <p>Il est vide .</p> 
@@ -53,8 +67,8 @@
         </div>
     </div>
     <?php } } } ;?> #}
-          </div>
-          </div>
-         <div class="w-100 d-flex justify-content-center"> <a type="submit" class="btn btn-dark t " href="{{path('app_accueil')}}">Retourner sur la page d'acceuil</a></div>
-        
-     {% endblock %}
+    </div>
+  </div>
+  <div class="w-100 d-flex justify-content-center"> <a type="submit" class="btn btn-dark t " href="{{path('app_accueil')}}">Retourner sur la page d'acceuil</a></div>
+
+  {% endblock %}

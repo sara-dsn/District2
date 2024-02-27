@@ -91,39 +91,5 @@ class AccueilController extends AbstractController
         return $this->render('message/demande.html.twig', [
         ]);
     }
-    #[Route('/panier', name: 'app_panier')]
-    public function panier(Request $request,EntityManagerInterface $entityManager, PlatRepository $platRepo, DetailRepository $detailRepo): Response
-    {
-
-        $id = $request->query->get('id');
-
-        $plat=$platRepo->find($id); 
-      // Vérifie si le plat existe
-    if ($plat) {
-        // Récupère ou crée le détail en base de données
-        $detail = $detailRepo->findOneBy(['plat' => $plat]);
-
-        // Si aucun détail n'existe pour ce plat, crée-en un nouveau
-        if (!$detail) {
-            $detail = new Detail();
-            $detail->setPlats($plat);
-            $detail->setQuantite(1);
-        }
-
-        // Ajoute le plat au détail
-        $detail->addPlats($plat);
-
-        // Enregistre les modifications en base de données
-        $entityManager->persist($detail);
-        $entityManager->flush();
-    }    
-        // $detail=$this->detailRepo->findAll();
-        // $detail->addPlat($plat);
-        // $entityManager->
-        // $entityManager->
-
-        return $this->render('utilisateur/panier.html.twig', [
-            "plt"=>$plat
-        ]);
-    }
+    
 }
