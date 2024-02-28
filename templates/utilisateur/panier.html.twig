@@ -10,30 +10,32 @@
       </div>
     </div>
     <div class="col-10 mt-4 ">
-      <h2 class="font-weight-bolder">Votre Panier : </h2><br>
+      <br>
       {% if plt is empty %}
       <h4>{{ vide }}</h4>
       <div class="d-flex justify-content-start mr-5">
         <div class="col-5 mr-5"><img class='img-fluid mt-2'  src='asset/cat.fond/panier.png' alt='panier'></div>
       </div>
       {% else %}
-      <table class="table table-striped ">
+      <table class="table table-responsive table-striped  col-8 ">
         <thead>
           <tr>
-            <th>Photo</th>
-            <th>libelle</th>
-            <th>Description</th>
-            <th>Prix</th>
-            <th>Quantité</th>
+            <th class=" col-9"><h2 class="font-weight-bolder">Votre Panier : </h2></th>
+            <th>Quantité :</th>
+            <th>Total:</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><img class="img-fluid mt-2"  src="asset/food/{{ plt.image}}" alt="{{ plt.libelle}}"></td>
-            <td><h5 class="font-weight-bold" >{{ plt.libelle}}</h5></td>
-            <td>{{ plt.description}}</td>
+            <td class=" d-flex align-items-start ">
+                <img class="img-fluid mt-2 col-3"  src="asset/food/{{ plt.image}}" alt="{{ plt.libelle}}">
+              <div>
+                <h5 class="font-weight-bold" >{{ plt.libelle}}</h5><br>
+                <p>{{ plt.description}}</p>
+              </div>
+            </td>
+            <td><input type="text" class="form-control rounded col-2" name="quantity" id="quantity" value="1"></td>           
             <td>{{ plt.prix}} €</td>
-            <td><input type="text" class="form-control rounded col-2" name="quantity" id="quantity" value="1"></td>
           </tr>
         </tbody>
       </table>

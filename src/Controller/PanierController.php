@@ -23,7 +23,7 @@ class PanierController extends AbstractController
     public function panier(Request $request,EntityManagerInterface $entityManager,  DetailRepository $detailRepo): Response
     {                
         $session=$request->getSession();
-
+        $plat="";
         if($request->query->get('id')) { 
 
             $id = $request->query->get('id');
@@ -68,14 +68,14 @@ class PanierController extends AbstractController
             }}
              
         }
-        if($plat){
+        if(!$plat==""){
             return $this->render('utilisateur/panier.html.twig', [
                 "plt"=>$plat
             ]);
         }else{
             return $this->render('utilisateur/panier.html.twig', [
                 "vide"=>"Votre Panier est vide.",
-                "plt"=>""
+                "plt"=>$plat
             ]);
         
         }

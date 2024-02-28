@@ -17,7 +17,7 @@
             </div>
             <div id="visible">
                 <div class="col-12 d-flex justify-content-center">
-                     <h2 class="font-weight-bold font-italic  mb-3 pr-4">Votre Commande :</h2>
+                     <h2 class="font-weight-bold   mb-3 pr-4">Votre Commande :</h2>
                 </div>
                
                 <div class="d-flex justify-content-center">
@@ -77,7 +77,7 @@ if(isset($_GET["id"])){
         <form class="col-12 col-md-8 " method="POST" action="form_commande.php">
 
         <div class=" mr-4 pr-4 ml-4 mb-4 mt-4 ">
-            <label class="font-weight-bold font-italic text-right">Nom et
+            <label class="font-weight-bold  text-right">Nom et
                 Prénom</label>
             <input type="text" name="np" id="np" class="form-control">
             <div id="nompre"
@@ -89,7 +89,7 @@ if(isset($_GET["id"])){
 
         <div class="form-row">
             <div class="col-10 col-md-5 mr-4 ml-4 mb-4 mt-4">
-                <label class="font-weight-bold font-italic text-right">Email</label>
+                <label class="font-weight-bold  text-right">Email</label>
                 <input type="text" name="e" id="e" class="form-control">
                 <div id="email"
                     class="alert alert-danger alert-dismissible bg-transparent border-0 fade show"
@@ -98,7 +98,7 @@ if(isset($_GET["id"])){
                 </div>
             </div>
             <div class="col-10 col-md-5 mr-4 ml-4 mb-4 mt-4">
-                <label class="font-weight-bold font-italic text-right">Téléphone</label>
+                <label class="font-weight-bold  text-right">Téléphone</label>
                 <input type="text" name="t" id="t" class="form-control">
                 <div id="tel"
                     class="alert alert-danger alert-dismissible bg-transparent border-0 fade show"
@@ -108,7 +108,7 @@ if(isset($_GET["id"])){
             </div>
         </div>
         <div class="form-group mr-4 ml-4 mb-4 mt-4">
-            <label class="font-weight-bold font-italic text-right">Votre Adresse</label>
+            <label class="font-weight-bold  text-right">Votre Adresse</label>
             <textarea class="form-control" name="a" id="a" rows="4"></textarea>
             <div id="adresse"
                 class="alert alert-danger alert-dismissible fade bg-transparent border-0 show"
@@ -121,7 +121,7 @@ if(isset($_GET["id"])){
             <input type="hidden" class="card-text" name="l" value="<?=$element->libelle?>">
             <input type="hidden" class="card-text" name="p" value="<?=$element->prix?>">
                             <input type="submit" name="bouton"
-                    class="btn btn-dark font-weight-bold font-italic text-right t" href="index.php?page=livraison&id=<?=$element->id?>" value="Envoyer">
+                    class="btn btn-dark font-weight-bold  text-right t" href="index.php?page=livraison&id=<?=$element->id?>" value="Envoyer">
             </div>
         </div>
     </form>

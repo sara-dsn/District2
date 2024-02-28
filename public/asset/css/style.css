@@ -3,7 +3,16 @@
     background-size: cover;
     background-attachment: fixed;
 }
-
+body{
+    font-size: large;
+}
+.best{
+    color: #fb4c04;
+    font-size: xx-large;
+}
+.title{
+    font-size: xx-large;
+}
 .container {
     position: relative; 
 }
@@ -67,6 +76,9 @@
 .titre{
     color:#970747;
 }
+/* .back{
+    background-color:#970747;
+} */
 .taille{
 padding-top:2%;
     height:75%; 
@@ -95,6 +107,7 @@ padding-top:2%;
     .hauteur{
         height: 22%;
     }
+  
     @media screen and (max-width:767px){
      
        .d{ 
