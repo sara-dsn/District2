@@ -3,7 +3,10 @@
 namespace App\DataFixtures;
 
 use App\Entity\Plat;
+use App\Entity\User;
+use App\Entity\Commande;
 use App\Entity\Categorie;
+use DateTime;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
@@ -80,6 +83,51 @@ class AppFixtures extends Fixture
         $mojito->setPrix(4);
         $mojito->setCategorie($froid);
         $manager->persist($mojito);
+        $manager->flush();
+
+        $rick=new User();
+        $rick->setEmail("rick@gmail.com");
+        $rick->setRoles(['ROLE_ADMIN']);
+        $rick->setPassword('$2y$13$3p9sd5lj2zwJDstzb95TuOsA9/ipgZTHuFwYA8DBQ0LpYTtYKvA3S');
+        $rick->setIsVerified(1);
+        $manager->persist($rick);
+        $manager->flush();
+
+        $morty=new User();
+        $morty->setEmail("morty@gmail.com");
+        $morty->setRoles(['ROLE_ADMIN']);
+        $morty->setPassword('$2y$13$0rqMYlnMj/FvsT.eBOr2wuPtzVZyOTxmaj6Ht6kq/vZvefZDqlwrG');
+        $morty->setIsVerified(1);
+        $manager->persist($morty);
+        $manager->flush();
+
+        $date1=new DateTime('2024-01-14');
+        $date2=new DateTime('2024-02-22');
+        $date3=new DateTime('2024-02-29');
+
+
+        $commande1= new Commande();
+        $commande1->setDateCommande($date1);
+        $commande1->setTotal("8.00");
+        $commande1->setEtat(3);
+        $commande1->setUtilisateur($rick);
+        $manager->persist($commande1);
+        $manager->flush();
+
+        $commande2= new Commande();
+        $commande2->setDateCommande($date2);
+        $commande2->setTotal("16.00");
+        $commande2->setEtat(3);
+        $commande2->setUtilisateur($rick);
+        $manager->persist($commande2);
+        $manager->flush();
+
+        $commande3= new Commande();
+        $commande3->setDateCommande($date3);
+        $commande3->setTotal("11.50");
+        $commande3->setEtat(2);
+        $commande3->setUtilisateur($morty);
+        $manager->persist($commande3);
         $manager->flush();
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PlatRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -33,6 +35,14 @@ class Plat
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $categorie = null;
 
+    #[ORM\OneToMany(targetEntity: detail::class, mappedBy: 'plat')]
+    private Collection $details;
+
+    public function __construct()
+    {
+        $this->details = new ArrayCollection();
+    }
+
 
 
   
@@ -40,7 +50,17 @@ class Plat
     {
         return $this->id;
     }
+    public function getPrix(): ?string
+        {
+            return $this->prix;
+        }
 
+        public function setPrix(string $prix): static
+        {
+            $this->prix = $prix;
+
+            return $this;
+        }
     public function getLibelle(): ?string
     {
         return $this->libelle;
@@ -89,17 +109,7 @@ class Plat
         return $this;
     }
 
-    public function getPrix(): ?string
-    {
-        return $this->prix;
-    }
-
-    public function setPrix(string $prix): static
-    {
-        $this->prix = $prix;
-
-        return $this;
-    }
+   
 
     public function getCategorie(): ?Categorie
     {
@@ -109,6 +119,36 @@ class Plat
     public function setCategorie(?Categorie $categorie): static
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, detail>
+     */
+    public function getDetails(): Collection
+    {
+        return $this->details;
+    }
+
+    public function addDetail(detail $detail): static
+    {
+        if (!$this->details->contains($detail)) {
+            $this->details->add($detail);
+            $detail->setPlat($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetail(detail $detail): static
+    {
+        if ($this->details->removeElement($detail)) {
+            // set the owning side to null (unless already changed)
+            if ($detail->getPlat() === $this) {
+                $detail->setPlat(null);
+            }
+        }
 
         return $this;
     }

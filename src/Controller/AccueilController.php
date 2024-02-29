@@ -45,8 +45,10 @@ class AccueilController extends AbstractController
     
 
     #[Route('/', name: 'app_accueil')]
-    public function accueil(): Response
+    public function accueil(Request $request): Response
     {
+        $session=$request->getSession();
+
         $categorie=$this->categorieRepo->findBy( ['active'=>1], null ,$limit='6');
         $plat=$this->platRepo->findBy( ['active'=>1], null ,$limit='3');
         $platsm=$this->platRepo->findBy( ['active'=>1], null ,$limit='6');
@@ -59,8 +61,10 @@ class AccueilController extends AbstractController
         ]);
     }
     #[Route('/categorie', name: 'app_categorie')]
-    public function categorie(): Response
+    public function categorie(Request $request): Response
     {
+        $session=$request->getSession();
+
         $categorie=$this->categorieRepo->findBy( ['active'=>1], null ,$limit='6');
 
         return $this->render('accueil/categorie.html.twig', [
@@ -68,47 +72,61 @@ class AccueilController extends AbstractController
         ]);
     }
     #[Route('/plat', name: 'app_plat')]
-    public function plat(): Response
+    public function plat(Request $request): Response
     {
+        $session=$request->getSession();
+
         $plt=$this->platRepo->findBy( ['active'=>1], null ,$limit='6');
         return $this->render('accueil/plat.html.twig', [
             'plat'=>$plt
         ]);
     }
     #[Route('/contact', name: 'app_contact')]
-    public function contact(): Response
+    public function contact(Request $request): Response
     {
+        $session=$request->getSession();
+
         return $this->render('formulaire/contact.html.twig', [
         ]);
     }
     #[Route('/commande', name: 'app_commande')]
-    public function commande(): Response
+    public function commande(Request $request): Response
     {
+        $session=$request->getSession();
+
         return $this->render('formulaire/commande.html.twig', [
         
         ]);
     }
     #[Route('/politique', name: 'app_politique')]
-    public function politique(): Response
+    public function politique(Request $request): Response
     {
+        $session=$request->getSession();
+
         return $this->render('RGPD/politique.html.twig', [
         ]);
     }
     #[Route('/mention', name: 'app_mention')]
-    public function mention(): Response
+    public function mention(Request $request): Response
     {
+        $session=$request->getSession();
+
         return $this->render('RGPD/mention.html.twig', [
         ]);
     }
     #[Route('/livreur', name: 'app_livreur')]
-    public function livreur(): Response
+    public function livreur(Request $request): Response
     {
+        $session=$request->getSession();
+
         return $this->render('message/livreur.html.twig', [
         ]);
     }
     #[Route('/demande', name: 'app_demande')]
-    public function demande(): Response
+    public function demande(Request $request): Response
     {
+        $session=$request->getSession();
+
         return $this->render('message/demande.html.twig', [
         ]);
     }

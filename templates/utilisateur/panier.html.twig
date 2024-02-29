@@ -11,10 +11,10 @@
     </div>
     <div class="col-10 mt-4 ">
       <br>
-      {% if plt is empty %}
-      <h4>{{ vide }}</h4>
+      {% if vide  %}
+      <h4>{{ panier }}</h4>
       <div class="d-flex justify-content-start mr-5">
-        <div class="col-5 mr-5"><img class='img-fluid mt-2'  src='asset/cat.fond/panier.png' alt='panier'></div>
+        <div class="col-3 mr-5"><img class='img-fluid mt-2'  src='asset/cat.fond/panier.png' alt='panier'></div>
       </div>
       {% else %}
       <table class="table table-responsive table-striped  col-8 ">
@@ -26,16 +26,23 @@
           </tr>
         </thead>
         <tbody>
+        {% for plat in plats %}
+    
           <tr>
             <td class=" d-flex align-items-start ">
-                <img class="img-fluid mt-2 col-3"  src="asset/food/{{ plt.image}}" alt="{{ plt.libelle}}">
+                <img class="img-fluid mt-2 col-3"  src="asset/food/{{ plat.plat.image}}" alt="{{ plat.plat.libelle}}">
               <div>
-                <h5 class="font-weight-bold" >{{ plt.libelle}}</h5><br>
-                <p>{{ plt.description}}</p>
+                <h5 class="font-weight-bold" >{{ plat.plat.libelle}}</h5><br>
+                <p>{{ plat.plat.description}}</p>
               </div>
             </td>
-            <td><input type="text" class="form-control rounded col-2" name="quantity" id="quantity" value="1"></td>           
-            <td>{{ plt.prix}} €</td>
+            <td><input type="text" class="form-control rounded col-2" name="quantity" id="quantity" value="">{{ plat.quantité }}</td>           
+            <td>{{ plat.prix}} €</td>
+          </tr>
+          {% endfor %}
+          <tr>
+          <td class="ml-5 col-9 d-flex justify-content-end"> <p class="font-weight-bold">Total de la commande : </p></td>
+          <td class="col-4">{{ total }} €</td>
           </tr>
         </tbody>
       </table>

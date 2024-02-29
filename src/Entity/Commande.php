@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,6 +24,18 @@ class Commande
 
     #[ORM\Column]
     private ?int $etat = null;
+
+    #[ORM\OneToMany(targetEntity: detail::class, mappedBy: 'commande')]
+    private Collection $detail;
+
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?user $utilisateur = null;
+
+    public function __construct()
+    {
+        $this->detail = new ArrayCollection();
+    }
 
 
    
@@ -65,6 +79,50 @@ class Commande
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, detail>
+     */
+    public function getDetail(): Collection
+    {
+        return $this->detail;
+    }
+
+    public function addDetail(detail $detail): static
+    {
+        if (!$this->detail->contains($detail)) {
+            $this->detail->add($detail);
+            $detail->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetail(detail $detail): static
+    {
+        if ($this->detail->removeElement($detail)) {
+            // set the owning side to null (unless already changed)
+            if ($detail->getCommande() === $this) {
+                $detail->setCommande(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUtilisateur(): ?user
+    {
+        return $this->utilisateur;
+    }
+
+    public function setUtilisateur(?user $utilisateur): static
+    {
+        $this->utilisateur = $utilisateur;
+
+        return $this;
+    }
+
+
 
 
    

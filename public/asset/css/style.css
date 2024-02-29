@@ -6,10 +6,7 @@
 body{
     font-size: large;
 }
-.best{
-    color: #fb4c04;
-    font-size: xx-large;
-}
+
 .title{
     font-size: xx-large;
 }
@@ -75,6 +72,9 @@ body{
 }
 .titre{
     color:#970747;
+}
+.violet{
+    color: #970747;
 }
 /* .back{
     background-color:#970747;
