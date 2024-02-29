@@ -6,3 +6,12 @@ controllers:
 app_commande:
     path: '/commande/{id}'
     controller: 'App\Controller\AccueilController::commande'
+list:
+    path: '/list/{id}'
+    controller: 'App\service\panierservice::list'
+add:
+    path: '/add/{id}' 
+    controller: 'App\service\panierservice::add'
+remove:
+    path: '/remove/{id}'
+    controller: 'App\service\panierservice::remove'

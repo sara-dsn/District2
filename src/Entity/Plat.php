@@ -35,13 +35,14 @@ class Plat
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $categorie = null;
 
-    #[ORM\OneToMany(targetEntity: detail::class, mappedBy: 'plat')]
+    #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'plat')]
     private Collection $details;
 
     public function __construct()
     {
         $this->details = new ArrayCollection();
     }
+
 
 
 
@@ -152,6 +153,8 @@ class Plat
 
         return $this;
     }
+
+
 
 
 
