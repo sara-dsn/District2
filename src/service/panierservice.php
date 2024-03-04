@@ -31,6 +31,8 @@ class panierservice extends AbstractController
 
     public function add(Request $request, SessionInterface $session){
         if($request->attributes->get('id')) { 
+            $id=$request->attributes->get('id');
+        $panier=$session->get('panier',[]);
             $id = $request->attributes->get('id');
             // si le plat existe dans le panier on garde sa quantité sinon on l'initialise à 0:
             $panier[$id] = $panier[$id] ?? 0;
@@ -54,11 +56,12 @@ class panierservice extends AbstractController
                 if($quantity==0) {
                     unset($panier[$id]);
                 }else{
-                    $panier[$idd]=$quantity;
+                    $panier[$idd]=$quantity;   
+                    $session->set('panier',$panier);
+
                 }
             }
         }
-   $session->set('panier',$panier);
         return $this->redirectToRoute('app_panier', [
         ]);
     }  

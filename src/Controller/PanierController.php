@@ -25,23 +25,23 @@ class PanierController extends AbstractController
         // on recupere la session de la requête:   
         $session=$request->getSession();
         $panier=$session->get('panier',[]);
+        $id = $request->query->get('id');
 
-        if($request->query->get('id')) { 
-            $id = $request->query->get('id');
+        if($id) { 
             // si le plat existe dans le panier on garde sa quantité sinon on l'initialise à 0:
             $panier[$id] = $panier[$id] ?? 0;
             // puis on l'incrémente:
             $panier[$id]++;
             // on conserve le tableau 'panier' dans la session:
             $session->set('panier', $panier);
-        }
+        }   
         
         // on créer un tableau '$plats' et une variable pour stocker le total final:
         $tablePlats = [];
         $total=0;
-        foreach ($panier as $id => $quantity) {
+        foreach ($panier as $idd => $quantity) {
             // avec les id du panier on recupère chaque plat:
-            $plat = $this->platRepo->find($id);
+            $plat = $this->platRepo->find($idd);
             $prix=$plat->getPrix()*$quantity;
             $total=$total+$prix;
             // si le plat existe on le stock dans le tableau '$plat' créée juste au dessus:
@@ -50,10 +50,10 @@ class PanierController extends AbstractController
                 'plat' => $plat,
                 'quantité'=>$quantity,
                 'prix'=>$prix,
-               
                 ];
             }
         }
+
         $this->logger->debug('Page Panier');
         return $this->render('utilisateur/panier.html.twig', [
         'plats' => $tablePlats,
