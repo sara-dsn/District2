@@ -36,13 +36,18 @@
                 <p>{{ plat.plat.description}}</p>
               </div>
             </td>
-            <td><input type="text" class="form-control rounded col-2" name="quantity" id="quantity" value="">{{ plat.quantité }}</td>           
+            <td><p class="mt-3 ml-4 "><b class="ml-3"> {{ plat.quantité }}</b></p> <br> 
+            <div class="row ">
+            <a type="submit" class="col-3"href="{{ path('remove',{'id':plat.plat.id})}}"><img class="img-fluid" src="{{ asset('asset/cat.fond/moins.png')}}" alt="moins"></a>
+            <a type="submit" class="col-3" href="{{ path('add', {'id':plat.plat.id})}}"><img  class="img-fluid" src="{{ asset('asset/cat.fond/plus.png')}}"  alt="plus" ></a>
+            </div><br>
+          <a type="submit" class="ml-4" href="{{ path('delete',{'id':plat.plat.id})}}"><img  class="col-3" alt="jeter"  src="{{asset('asset/cat.fond/poubelle.png')}}"></td>           
             <td>{{ plat.prix}} €</td>
           </tr>
           {% endfor %}
           <tr>
           <td class="ml-5 col-9 d-flex justify-content-end"> <p class="font-weight-bold">Total de la commande : </p></td>
-          <td class="col-4">{{ total }} €</td>
+          <td class="col-4">{{ total }} € </td>
           </tr>
         </tbody>
       </table>

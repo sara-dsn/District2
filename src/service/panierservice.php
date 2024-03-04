@@ -20,16 +20,18 @@ class panierservice extends AbstractController
         $this->platRepo = $platRepo;
         $this->logger = $logger;
     }
+
     public function list(Request $request){ 
         // on recupere la session de la requête:   
         $session=$request->getSession();
         $panier=$session->get('panier',[]);
-        return $this->render('utilisateur/panier.html.twig', []);
+        return $this->redirectToRoute('app_panier');
 
     }
+
     public function add(Request $request, SessionInterface $session){
-        if($request->query->get('id')) { 
-            $id = $request->query->get('id');
+        if($request->attributes->get('id')) { 
+            $id = $request->attributes->get('id');
             // si le plat existe dans le panier on garde sa quantité sinon on l'initialise à 0:
             $panier[$id] = $panier[$id] ?? 0;
             // puis on l'incrémente:
@@ -37,43 +39,37 @@ class panierservice extends AbstractController
             // on conserve le tableau 'panier' dans la session:
             $session->set('panier', $panier);
         }   
-        // on créer un tableau '$plats' et une variable pour stocker le total final:
-        $tablePlats = [];
-        $total=0;
-        foreach ($panier as $id => $quantity) {
-            // avec les id du panier on recupère chaque plat:
-            $plat = $this->platRepo->find($id);
-            $prix=$plat->getPrix()*$quantity;
-            $total=$total+$prix;
-            // si le plat existe on le stock dans le tableau '$plat' créée juste au dessus:
-            if ($plat) {
-            $tablePlats[] = [
-                'plat' => $plat,
-                'quantité'=>$quantity,
-                'prix'=>$prix,
-               
-                ];
-            }
-        } 
-        $session->set('tableplat',$tablePlats);
+        return $this->redirectToRoute('app_panier');
+
     }
+    
     public function remove(Request $request, SessionInterface $session){
         // je recupere l'id du lien:
-        $id=$request->query->get('id');
-        // je cherche le plat correspondant à l'id:
-        $prix=$this->platRepo->get($id)->getPrix();
+        $id=$request->attributes->get('id');
+        $panier=$session->get('panier',[]);
 
-        $platAsupp=$session->get('panier'[$id]);
-        $suppPlat=$platAsupp->getQuantite()-1;
-        $suppPrix=$platAsupp->getPrix()-$prix;
+        foreach($panier as $idd => $quantity){
+            if($id == $idd){
+                $quantity-- ;
+                if($quantity==0) {
+                    unset($panier[$id]);
+                }else{
+                    $panier[$idd]=$quantity;
+                }
+            }
+        }
+   $session->set('panier',$panier);
+        return $this->redirectToRoute('app_panier', [
+        ]);
+    }  
+    public function delete(Request $request, SessionInterface $session){
+        $id=$request->attributes->get('id');
+        $panier=$session->get('panier',[]);
 
+        if($panier[$id]){
+            unset($panier[$id]);
+        };
+        $session->set('panier',$panier);
+        return $this->redirectToRoute('app_panier');
     }
-        
-        
-       
-        
-   
-     
-       
-    
 }

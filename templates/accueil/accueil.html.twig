@@ -53,7 +53,7 @@
                             <img class="img-fluid position-absolute  img-fluid col-5 mb-5" src="asset/cat.fond/bestseller.png" alt="best seller"> 
                         </div>
                     </div>
-                    <div class="mt-auto  text-center"> <a href="{{ path('app_panier',{'id':plt.id}) }}" id="btnplt" type="submit" value="{{ plt.id }}" class="btn  col-4 t"><img class="img-fluid " src="asset/cat.fond/panierbtn.png" alt="ajouter au panier"></a></div>
+                    <div class="mt-auto  text-center"> <a href="{{ path('app_panier',{'id':plt.id}) }}" id="btnplt" type="submit" value="{{ plt.id }}" class="btn  col-4 t"><img class="img-fluid " src="{{asset('asset/cat.fond/panierbtn.png')}}" alt="ajouter au panier"></a></div>
                 </div>
                 {% endif %}
     {% endfor %}
