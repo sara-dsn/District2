@@ -77,6 +77,15 @@ body{
 .violet{
     background-color: #970747 ;
 }
+.bordure{
+    border-color: #970747;
+    border-radius: 5%;
+    border-style: ridge;
+    border-width: thick;
+}
+.beige{
+    background-color:  #fef4e8;
+}
 /* .back{
     background-color:#970747;
 } */
