@@ -46,9 +46,13 @@ security:
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
+    # LES PARE-FEU:
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN } les pare-feu
-        # - { path: ^/commande, roles: ROLE_USER }
+        - { path: ^/gestionPlat, roles: ROLE_CHEF } 
+        - { path: ^/commande, roles: ROLE_CLIENT }
+        
+        - { path: ^/gestionPlat, roles: ROLE_ADMIN} 
+        - { path: ^/commande, roles: ROLE_ADMIN}
 
 when@test:
     security:

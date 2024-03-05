@@ -23,7 +23,7 @@
                         <h5 class="card-title font-weight-bold">{{ plt.libelle }}</h5>
                         <p class="card-text ">{{ plt.description }} <br> Menu: {{ plt.prix }} €</p><br>
                     </div>
-                    <div class="mt-auto  text-center"> <a href="{{ path('app_panier',{'id':plt.id}) }}" id="btnplt" type="submit" value="{{ plt.id }}" class="btn  col-4 t"><img class="img-fluid " src="{{asset('asset/cat.fond/panierbtn.png')}}" alt="ajouter au panier"></a></div>
+                    <div class="mt-auto  text-center"> <a href="{{ path('add',{'id':plt.id}) }}" id="btnplt" type="submit" value="{{ plt.id }}" class="btn  col-4 t"><img class="img-fluid " src="{{asset('asset/cat.fond/panierbtn.png')}}" alt="ajouter au panier"></a></div>
                 </div>
     {% endfor %}
           

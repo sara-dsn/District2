@@ -14,7 +14,7 @@ framework:
         cookie_secure: auto
         cookie_samesite: lax
         save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
-        gc_maxlifetime: 300 
+        gc_maxlifetime: 600 
 
     #esi: true
     #fragments: true

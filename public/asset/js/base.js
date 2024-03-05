@@ -59,7 +59,7 @@ $(document).ready(function () {
                             <div class="card-body font-italic ">
                                 <h5 class="card-title  font-weight-bold ">${uno.libelle}</h5>
                                 <p class="card-text ">${uno.description} <br> Menu: ${uno.prix} € </p>
-                                <div class="mt-auto  text-center"> <a href="{{ path('app_panier',{'id':${uno.id}) }}" id="btnplt" type="submit" name="id" value="{{ plt.id }}" class="btn btn-warning di t">Ajouter au panier</a></div>
+                                <div class="mt-auto  text-center"> <a href="{{ path('add',{'id':${ uno.id }}) }}" id="btnplt" type="submit" value="${ uno.id }" class="btn  col-4 t"><img class="img-fluid " src="{{asset('asset/cat.fond/panierbtn.png')}}" alt="ajouter au panier"></a></div>
                                 </div>`);
                     a.append(txt);
                 });
@@ -86,7 +86,7 @@ $(document).ready(function () {
                         <div class="card-body font-italic">
                             <h5 class="  card-title font-weight-bold ">${uno.libelle}</h5>
                             <p class="card-text ">${uno.description} <br> Menu: ${uno.prix} € </p>
-                            <div class="mt-auto  text-center"> <a href="{{ path('app_panier',{'id':${uno.id}) }}" id="btnplt" type="submit" name="id" value="{{ plt.id }}" class="btn btn-warning di t">Ajouter au panier</a></div>
+                            <div class="mt-auto  text-center"> <a href="{{ path('add',{'id':${ uno.id }}) }}" id="btnplt" type="submit" value="${ uno.id }" class="btn  col-4 t"><img class="img-fluid " src="{{asset('asset/cat.fond/panierbtn.png')}}" alt="ajouter au panier"></a></div>
                             </div>`);
                     visible.hide();
                     test.append(t);

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Psr\Log\LoggerInterface;
+use App\service\panierservice;
 use App\Repository\PlatRepository;
 use App\Repository\DetailRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -20,47 +21,24 @@ class PanierController extends AbstractController
         $this->logger = $logger;
     }
     #[Route('/panier', name: 'app_panier')]
-    public function panier(Request $request,EntityManagerInterface $entityManager,  DetailRepository $detailRepo): Response
-    {      
-        // on recupere la session de la requête:   
-        $session=$request->getSession();
-        $panier=$session->get('panier',[]);
-        $id = $request->query->get('id');
-
-        if($id) { 
-            // si le plat existe dans le panier on garde sa quantité sinon on l'initialise à 0:
-            $panier[$id] = $panier[$id] ?? 0;
-            // puis on l'incrémente:
-            $panier[$id]++;
-            // on conserve le tableau 'panier' dans la session:
-            $session->set('panier', $panier);
-        }   
+    public function panier(Request $request,LoggerInterface $logger,  PlatRepository $PlatRepo): Response
+    { 
         
-        // on créer un tableau '$plats' et une variable pour stocker le total final:
-        $tablePlats = [];
-        $total=0;
-        foreach ($panier as $idd => $quantity) {
-            // avec les id du panier on recupère chaque plat:
-            $plat = $this->platRepo->find($idd);
-            $prix=$plat->getPrix()*$quantity;
-            $total=$total+$prix;
-            // si le plat existe on le stock dans le tableau '$plat' créée juste au dessus:
-            if ($plat) {
-            $tablePlats[] = [
-                'plat' => $plat,
-                'quantité'=>$quantity,
-                'prix'=>$prix,
-                ];
-            }
-        }
+    //On recupere la focntion pour afficher le panier:  
+       $affiche= new panierservice($PlatRepo, $logger);
+       $fonction=$affiche->list($request);
 
-        $this->logger->debug('Page Panier');
-        return $this->render('utilisateur/panier.html.twig', [
+    //On recupere les données retournées:
+       $total=$fonction['total'];
+       $tablePlats=$fonction['tablePlat'];
+
+       return $this->render('utilisateur/panier.html.twig', [
         'plats' => $tablePlats,
         'vide' => empty($tablePlats), 
         'panier'=>'votre panier est vide',
         'total'=>$total
-        ]);
+    ]);
+       
        
     }
 }

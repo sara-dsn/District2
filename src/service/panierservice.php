@@ -20,19 +20,43 @@ class panierservice extends AbstractController
         $this->platRepo = $platRepo;
         $this->logger = $logger;
     }
-
+// Affiche le panier:
     public function list(Request $request){ 
         // on recupere la session de la requête:   
         $session=$request->getSession();
         $panier=$session->get('panier',[]);
-        return $this->redirectToRoute('app_panier');
+
+        // on créer un tableau '$plats' et une variable pour stocker le total final:
+        $tablePlats = [];
+        $total=0;
+        foreach ($panier as $id => $quantity) {
+            // avec les id du panier on recupère chaque plat:
+            $plat = $this->platRepo->find($id);
+            $prix=$plat->getPrix()*$quantity;
+            $total=$total+$prix;
+            // si le plat existe on le stock dans le tableau '$plat' créée juste au dessus:
+            if ($plat) {
+                $tablePlats[] = [
+                    'plat' => $plat,
+                    'quantité'=>$quantity,
+                    'prix'=>$prix,
+                ];
+            }
+        }
+
+        $this->logger->debug('Page Panier');
+     
+        return [ 
+            'tablePlat'=>$tablePlats,
+            'total'=>$total,
+        ];
 
     }
-
+// Ajouter un plat au panier:
     public function add(Request $request, SessionInterface $session){
         if($request->attributes->get('id')) { 
             $id=$request->attributes->get('id');
-        $panier=$session->get('panier',[]);
+            $panier=$session->get('panier',[]);
             $id = $request->attributes->get('id');
             // si le plat existe dans le panier on garde sa quantité sinon on l'initialise à 0:
             $panier[$id] = $panier[$id] ?? 0;
@@ -44,7 +68,7 @@ class panierservice extends AbstractController
         return $this->redirectToRoute('app_panier');
 
     }
-    
+// Retire un plat du panier:
     public function remove(Request $request, SessionInterface $session){
         // je recupere l'id du lien:
         $id=$request->attributes->get('id');
@@ -54,8 +78,9 @@ class panierservice extends AbstractController
             if($id == $idd){
                 $quantity-- ;
                 if($quantity==0) {
-                    unset($panier[$id]);
-                }else{
+                    unset($panier[$idd]);
+                }
+                else{
                     $panier[$idd]=$quantity;   
                     $session->set('panier',$panier);
 
@@ -65,6 +90,7 @@ class panierservice extends AbstractController
         return $this->redirectToRoute('app_panier', [
         ]);
     }  
+// Supprime un plat du panier:
     public function delete(Request $request, SessionInterface $session){
         $id=$request->attributes->get('id');
         $panier=$session->get('panier',[]);
