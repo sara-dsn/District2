@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    $('label[for="commande_adresseLivraison"]').removeClass('col-form-label col-sm-2 required');
     //alert("abracadabra");
     var btn=$("#bottom"); 
     var btn3=$("#btnplt");

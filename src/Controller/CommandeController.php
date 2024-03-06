@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use App\Repository\PlatRepository;
-use App\service\panierservice;
+use App\Form\CommandeType;
 use Psr\Log\LoggerInterface;
+use App\service\panierservice;
+use App\Repository\PlatRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -23,6 +24,17 @@ class CommandeController extends AbstractController
     #[Route('/commande', name: 'app_commande')]
     public function commande(Request $request, PlatRepository $PlatRepo , LoggerInterface $Logger): Response
     {
+        $session=$request->getSession();
+        $email=$session->get('_security.last_username',[]);
+        $panier=$session->get('panier',[]);
+        $user=$request->getUser();
+        $form=$this->createForm(CommandeType::class,$user);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            // sendmail
+        }
+
         $classe= new panierservice( $PlatRepo, $Logger);
         $fonction=$classe->list($request);
         
@@ -35,7 +47,7 @@ class CommandeController extends AbstractController
             'plats'=>$tablePlat,
             'vide'=>empty($tablePlat),
             'panier'=>'Votre Panier est vide',
-        
+            'commande'=>$form->createView(),
         ]);
     }
 }
