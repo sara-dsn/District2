@@ -4,13 +4,9 @@ namespace App\service;
 
 use Psr\Log\LoggerInterface;
 use App\Repository\PlatRepository;
-use App\Repository\DetailRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class panierservice extends AbstractController
 {    
@@ -101,4 +97,31 @@ class panierservice extends AbstractController
         $session->set('panier',$panier);
         return $this->redirectToRoute('app_panier');
     }
+// // Envoyer un mail de confirmation de commande:
+//     public function sendEmail(MailerInterface $modelMail,Security $security,  $panier, $adresseLivraison): Response
+//         {
+
+//                   // Récupere l'email de l'utilisateur:
+//         $user=$security->getUser();
+//         $email=$user->getUserIdentifier();           
+//             var_dump($email);
+//             $liste="";
+// foreach($panier as $id=>$quantity){
+//     $plat=$this->platRepo->find($id)->getLibelle();
+// $liste=$liste." ".$quantity." ".$plat." et ";
+// }
+//             $email = (new TemplatedEmail())
+//                 ->from('The_District@gmail.com')
+//                 ->to($email)
+//                 //->cc('cc@example.com')
+//                 //->bcc('bcc@example.com')
+//                 //->replyTo('fabien@example.com')
+//                 //->priority(Email::PRIORITY_HIGH)
+//                 ->subject('Votre Commande est en préparation !')
+//                 ->html("Merci d'avoir commander chez nous ! Le livreur vous contactera quand il récéptionnera votre commande de ".$liste." <br>  il vous la livrera au ".$adresseLivraison." . " );
+
+//             $modelMail->send($email);
+
+//             return new Response(true);
+//         }
 }

@@ -38,16 +38,12 @@ class CommandeType extends AbstractType
         ->add("same", RadioType::class ,[
             "label"=>"L'adresse de livraison et de facturation sont les mêmes.",
             'label_attr' => [
-                'style' => 'white-space: nowrap;',],
-            "attr"=>[
-                "class"=>"form-check-input",
-            ],                
+                'style' => 'white-space: nowrap;',],                
             "required"=>false,
 
         ])
         ->add('MoyenPaiment', ChoiceType::class,[
             "label"=>'Moyen de paiment :',
-         
             'label_attr' => [
                 'style' => 'white-space: nowrap;',],
             "choices"=>[
@@ -56,12 +52,9 @@ class CommandeType extends AbstractType
             ],
             "expanded"=>true,
             'multiple'=>false,
-            'attr'=>[
-                'class'=>"form-check-input",
-            ],
             'choice_attr'=>[
                 'Carte Bancaire'=>['class'=>'mb-2'],
-                'Paypal'=>['class'=>'mr-3 mb-2'],
+                'Paypal'=>['class'=>' mb-2'],
             ],
             'choice_label' => function ($value, $key, $index) {
                 if ($value === 'carte') {
@@ -79,10 +72,9 @@ class CommandeType extends AbstractType
             'label_attr' => [
                 'style' => 'white-space: nowrap;',],
             "attr"=>[
-                "class"=>"form-check-input",
+                "class"=>"form-check-input mr-5",
             ],                
             "required"=>true,
-
         ])
         ;
     }

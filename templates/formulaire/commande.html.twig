@@ -1,160 +1,92 @@
 {% extends 'base.html.twig' %}
-
-
 {% block body %}
-
-<div class="d-flex justify-content-center">
-    <div class="col-7 my-3 mr-5 ">
-<div class="progress beige">
-  <div class="progress-bar progress-bar-striped progress-bar-animated violet" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-</div>
-</div>
+                <div class="d-flex justify-content-center">
+                    <div class="col-7 my-3 mr-5 ">
+                <div class="progress beige">
+                <div class="progress-bar progress-bar-striped progress-bar-animated violet" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+            </div>
+        </div>
     </div>  
     <div class="row">
+
         <div class="col-2 d-none d-md-block ">
             <div class="card border-0 bg-transparent">
                 <div class="card-body">
                 <img src="asset/cat.fond/cuisinier.png" class="card-img-top img-fluid  " alt="Cuisinier">
                 </div>
             </div>
-        </div>  
+        </div> 
+
         {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger " role="alert">{{ flash_error }}</div>
-    {% endfor %}
-        <div class="col-7 d-flex justify-content-center">
-        {{ form_errors(commande) }}
-        {{ form_start(commande) }}
-
-            <div class="my-4 ">           
-            <label class="col-form-label col-form-label-lg col-12 my-3 ml-5 "><h4 class="ml-5 ">{{ form_label(commande.adresseLivraison) }}</h4></label>
-            {{ form_widget(commande.adresseLivraison)}}
-            {{ form_errors(commande.adresseLivraison)}}
-            </div>
-
-            <div class="form-group">
-            <label class="col-12 my-3  col-form-label col-form-label-lg ml-5"><h4 class="ml-5">{{ form_label(commande.adresseFacturation)}}</h4></label>
-            {{ form_widget(commande.adresseFacturation)}}
-            {{ form_errors(commande.adresseFacturation)}}            
-            </div>
-
-            <div class="form-check form-check-inline  mb-4 mr-5">
-            {{form_label(commande.same)}}
-            {{form_widget(commande.same)}}
-            {{form_errors(commande.same)}}
-
-            </div>
-            
-            
-<div class="form-radio">
-        <label class="col-form-label col-from-label-lg"><h4 >{{ form_label(commande.MoyenPaiment) }}</h4></label><br>
-        {% for choice in commande.MoyenPaiment %}
-            <div class="d-flex flex-row mt-3">
-                {{ form_widget(choice, {'attr': {'class': 'mr-2'}}) }}
-                {% if choice.vars.value == 'carte' %}
-                 <span class="payment-name"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-credit-card mx-3 " viewBox="0 0 16 16">
-  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"/>
-  <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
-</svg></span> <p >Carte Bancaire</p>
-                {% elseif choice.vars.value == 'paypal' %}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-paypal ml-3" viewBox="0 0 16 16">
-  <path d="M14.06 3.713c.12-1.071-.093-1.832-.702-2.526C12.628.356 11.312 0 9.626 0H4.734a.7.7 0 0 0-.691.59L2.005 13.509a.42.42 0 0 0 .415.486h2.756l-.202 1.28a.628.628 0 0 0 .62.726H8.14c.429 0 .793-.31.862-.731l.025-.13.48-3.043.03-.164.001-.007a.35.35 0 0 1 .348-.297h.38c1.266 0 2.425-.256 3.345-.91q.57-.403.993-1.005a4.94 4.94 0 0 0 .88-2.195c.242-1.246.13-2.356-.57-3.154a2.7 2.7 0 0 0-.76-.59l-.094-.061ZM6.543 8.82a.7.7 0 0 1 .321-.079H8.3c2.82 0 5.027-1.144 5.672-4.456l.003-.016q.326.186.548.438c.546.623.679 1.535.45 2.71-.272 1.397-.866 2.307-1.663 2.874-.802.57-1.842.815-3.043.815h-.38a.87.87 0 0 0-.863.734l-.03.164-.48 3.043-.024.13-.001.004a.35.35 0 0 1-.348.296H5.595a.106.106 0 0 1-.105-.123l.208-1.32z"/>
-</svg> <p class="ml-3">Paypal</p>
-                {% endif %}
-            </div>
+            <div class="alert alert-danger " role="alert">{{ flash_error }}</div>
         {% endfor %}
-      
+        <div class="col-7 d-flex justify-content-center">
+            {{ form_start(commande) }}
 
-            <div class="mt-4 form-row">
-            {{form_row(commande.CGU)}}<a type='submit' href='{{path('app_CGU')}}' class='titre' >CGU</a>
-            {# <input type="radio" for="CGU"><label for="CGU" class="ml-3">J'accepte les <a type="submit" href="{{path('app_CGU')}}" class="titre" >CGU</a></label> #}
-            </div>
+                <div class="my-4 ">           
+                    <div class="ml-4"><div class="my-3 ml-5 "><h4 class="ml-5 ">{{ form_label(commande.adresseLivraison) }}</h4></div></div>
+                    {{ form_widget(commande.adresseLivraison)}}
+                    {{ form_errors(commande.adresseLivraison)}}
+                </div>
 
-            <div class="d-flex justify-content-center  my-5">
-            {# <input type="submit" class="ml-5 btn btn-dark boutton-rond" value="Payer {{ total }} €"> #}
-            {# <button type="button" class="btn btn-dark btn-rounded">Payer {{ total }} €</button> #}
-            </div>
+                <div class="mb-4 ">
+                    <div class="my-3 ml-5"><h4 class="ml-5">{{ form_label(commande.adresseFacturation)}}</h4></div>
+                    {{ form_widget(commande.adresseFacturation)}}
+                    {{ form_errors(commande.adresseFacturation)}}            
+                </div>
 
-            {# div class="form-radio">
-            <label class="col-form-label col-from-label-lg"><h4>Moyen de paiment :</h4></label><br>
-            <div class="d-flex flex-row mt-3">
-            <input  class="mb-2"type="radio" for="carte"><span class="payment-name"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-credit-card mx-3 " viewBox="0 0 16 16">
-  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"/>
-  <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
-</svg></span> <p >Carte Bancaire</p></div>
- <div class="d-flex flex-row mt-3">
-            <input  class="mr-3 mb-2"type="radio" for="carte"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-paypal " viewBox="0 0 16 16">
-  <path d="M14.06 3.713c.12-1.071-.093-1.832-.702-2.526C12.628.356 11.312 0 9.626 0H4.734a.7.7 0 0 0-.691.59L2.005 13.509a.42.42 0 0 0 .415.486h2.756l-.202 1.28a.628.628 0 0 0 .62.726H8.14c.429 0 .793-.31.862-.731l.025-.13.48-3.043.03-.164.001-.007a.35.35 0 0 1 .348-.297h.38c1.266 0 2.425-.256 3.345-.91q.57-.403.993-1.005a4.94 4.94 0 0 0 .88-2.195c.242-1.246.13-2.356-.57-3.154a2.7 2.7 0 0 0-.76-.59l-.094-.061ZM6.543 8.82a.7.7 0 0 1 .321-.079H8.3c2.82 0 5.027-1.144 5.672-4.456l.003-.016q.326.186.548.438c.546.623.679 1.535.45 2.71-.272 1.397-.866 2.307-1.663 2.874-.802.57-1.842.815-3.043.815h-.38a.87.87 0 0 0-.863.734l-.03.164-.48 3.043-.024.13-.001.004a.35.35 0 0 1-.348.296H5.595a.106.106 0 0 1-.105-.123l.208-1.32z"/>
-</svg> <p class="ml-3">Paypal</p></div>
-            </div>
-            <div class="mt-4 form-group">
-            <input type="radio" for="CGU"><label for="CGU" class="ml-3">J'accepte les <a type="submit" href="{{path('app_CGU')}}" class="titre" >CGU</a></label>
-            </div>
-            <div class="d-flex justify-content-center  mb-5">
-            <input type="submit" class="ml-5 btn btn-dark boutton-rond" value="Payer {{ total }} €">
-            {# <button type="button" class="btn btn-dark btn-rounded">Payer {{ total }} €</button> #}
-
-            </div>
-            </form>{{ form_end(commande)}} 
-            {# <table>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>  #}
-        </div>    
-        <div class="col-3">
-               
-         <div class="card  bordure beige my-5 mr-5" >
-  <div class="card-header "><h4>Récapitulatif :</h4></div>
-  <div class="card-body">
-    <p class="card-text">
-    {% for plat in plats %}
-    <div class="row">
-        <div class="col-9"><p class='ml-2'>{{ plat.plat.libelle}} x {{ plat.quantité }}</p></div>
-        <div class="col-3">{{ plat.prix }} €</div>
-    </div>
-    {% endfor %}
-    <div class="row">
-        <div class="d-flex justify-content-end col-9 ">
-        Total :
-        </div>
-        <div class="col-3">        
-        {{ total }} €
-        </div>
-        </div>
-    </p>
-  </div>
-</div>
-            {# <table>
-                <thead>
-                    <tr>
-                    <th class="mr-5">Récapitulatif :</th>
-                    <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for plat in plats %}
-                        <tr>
-                            <td  >{{ plat.plat.libelle}} x {{ plat.quantité }}</td>
-                            <td >{{ plat.prix }} €</td>
-                        </tr>
+                <div class=" mb-4 mr-5">
+                    <div class="my-3 ml-5"><h4 class="ml-5">{{form_label(commande.same)}}</h4></div>
+                    {{form_widget(commande.same)}}
+                    {{form_errors(commande.same)}}
+                </div>
+                
+                
+                <div class="my-3 ml-5"><h4 class="ml-5">{{ form_label(commande.MoyenPaiment) }}</h4></div>
+                <div class="ml-3">
+                    {% for choice in commande.MoyenPaiment %}
+                        <div class="d-flex flex-row mt-3">
+                            {{ form_widget(choice, {'attr': {'class': 'mr-1'}}) }}
+                            {% if choice.vars.value == 'carte' %}
+                                <span class="payment-name">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-credit-card mx-3 " viewBox="0 0 16 16">
+                                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"/><path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/></svg></span> 
+                                <label>Carte Bancaire</label>
+                            {% elseif choice.vars.value == 'paypal' %}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-paypal ml-3" viewBox="0 0 16 16">
+                                <path d="M14.06 3.713c.12-1.071-.093-1.832-.702-2.526C12.628.356 11.312 0 9.626 0H4.734a.7.7 0 0 0-.691.59L2.005 13.509a.42.42 0 0 0 .415.486h2.756l-.202 1.28a.628.628 0 0 0 .62.726H8.14c.429 0 .793-.31.862-.731l.025-.13.48-3.043.03-.164.001-.007a.35.35 0 0 1 .348-.297h.38c1.266 0 2.425-.256 3.345-.91q.57-.403.993-1.005a4.94 4.94 0 0 0 .88-2.195c.242-1.246.13-2.356-.57-3.154a2.7 2.7 0 0 0-.76-.59l-.094-.061ZM6.543 8.82a.7.7 0 0 1 .321-.079H8.3c2.82 0 5.027-1.144 5.672-4.456l.003-.016q.326.186.548.438c.546.623.679 1.535.45 2.71-.272 1.397-.866 2.307-1.663 2.874-.802.57-1.842.815-3.043.815h-.38a.87.87 0 0 0-.863.734l-.03.164-.48 3.043-.024.13-.001.004a.35.35 0 0 1-.348.296H5.595a.106.106 0 0 1-.105-.123l.208-1.32z"/></svg> 
+                                <label class="ml-3">Paypal</label>
+                            {% endif %}
+                        </div>
                     {% endfor %}
-                    <tr>
-                        <td class="d-flex justify-content-end ">
-                        Total :
-                        </td>
-                        <td>                        
-                        {{ total }}
-                        </td>
-                    </tr>
-                </tbody>
-            </table> #}
+                </div>
+                <div class="row mt-4 mr-5 ">
+                    {{form_row(commande.CGU)}}<a type='submit' href='{{path('app_CGU')}}' class='titre ml-2' >CGU</a>
+                </div>
+
+                <div class="d-flex justify-content-center  my-5 mr-5">
+                    <input type="submit" class="ml-5 btn btn-dark boutton-rond" value="Payer {{ total }} €"> 
+                    {# <button type="button" class="btn btn-dark btn-rounded">Payer {{ total }} €</button> #}
+                </div>
+            {{ form_end(commande)}} 
+        </div>    
+        <div class="col-3">      
+            <div class="card  bordure beige my-5 mr-5" >
+                <div class="card-header "><h4>Récapitulatif :</h4></div>
+                <div class="card-body">
+                    <p class="card-text">
+                        {% for plat in plats %}
+                            <div class="row">
+                                <div class="col-9"><p class='ml-2'>{{ plat.plat.libelle}} x {{ plat.quantité }}</p></div>
+                                <div class="col-3">{{ plat.prix }} €</div>
+                            </div>
+                        {% endfor %}
+                        <div class="row">
+                            <div class="d-flex justify-content-end col-9 ">Total :</div><div class="col-3">{{ total }} €</div>
+                        </div>
+                    </p>
+                </div>
+            </div>
         </div>
     
     </div>
