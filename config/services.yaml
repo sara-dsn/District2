@@ -26,7 +26,7 @@ services:
             $mailer: '@mailer'
             $platRepo: '@App\Repository\PlatRepository'
             $security: '@Symfony\Bundle\SecurityBundle\Security'
-            # $session: '@session'
+            $session: '@session'
         tags:
             - { name : doctrine.event_subscriber }    
    

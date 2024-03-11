@@ -37,13 +37,13 @@ namespace App\EventSubscriber;
     
     // Envoyer un mail de confirmation de commande:
     public function postPersist(LifecycleEventArgs $args)
-    {
+    {        var_dump('hhhhhhh');
+
         $entity = $args->getObject();
         // Vérifier que l'entité est une commande
         if (!$entity instanceof \App\Entity\Commande) {
             return;
         }
-        var_dump('hhhhhhh');
         // Récupere le panier:
         $panier=$this->session->get('panier',[]);
     
