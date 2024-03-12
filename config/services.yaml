@@ -16,19 +16,6 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-     # Define the session service
-    Symfony\Component\HttpFoundation\Session\Session:
-        public: true
-
-    # Define the service subscriber
-    App\EventSubscriber\CommandeSubscriber:
-        arguments:  
-            $mailer: '@mailer'
-            $platRepo: '@App\Repository\PlatRepository'
-            $security: '@Symfony\Bundle\SecurityBundle\Security'
-            $session: '@session'
-        tags:
-            - { name : doctrine.event_subscriber }    
    
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -38,6 +25,19 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+  # Define the session service
+    # Symfony\Component\HttpFoundation\Session\SessionInterface:
+    #    public: true
 
+    # Define the service subscriber
+    App\EventSubscriber\CommandeSubscriber:
+        arguments:  
+            $mailer: '@mailer'
+            $platRepo: '@App\Repository\PlatRepository'
+            $security: '@Symfony\Bundle\SecurityBundle\Security'
+            # $session: '@Symfony\Component\HttpFoundation\Session\SessionInterface'
+        tags:
+            - { name : doctrine.event_subscriber }    
+   
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

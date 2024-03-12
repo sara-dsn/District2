@@ -8,20 +8,26 @@ namespace App\EventSubscriber;
     use Doctrine\Common\EventSubscriber;
     use Symfony\Component\Mailer\MailerInterface;
     use Doctrine\Persistence\Event\LifecycleEventArgs;
-    use Symfony\Component\HttpFoundation\Session\SessionInterface;
+    //use Symfony\Component\HttpFoundation\Session\SessionInterface;
+    use Symfony\Component\HttpFoundation\RequestStack;
+    use Psr\Log\LoggerInterface;
 
    class CommandeSubscriber implements EventSubscriber
    {
     private $platRepo;
     private $mailer;
     private $security;
-    private $session;
-    public function __construct( MailerInterface $mailer, PlatRepository $platRepo, Security $security, SessionInterface $session)
+    private $requestStack;
+    //private $session;
+    private $logger;
+    public function __construct( MailerInterface $mailer, PlatRepository $platRepo, Security $security,RequestStack $requestStack, LoggerInterface $logger)
     {    
         $this->platRepo = $platRepo;
         $this->mailer = $mailer;
         $this->security=$security;
-        $this->session=$session;
+        $this->requestStack = $requestStack;
+        //$this->session=$session;
+        $this->logger = $logger;
     }
 
     public function getSubscribedEvents()
@@ -37,15 +43,20 @@ namespace App\EventSubscriber;
     
     // Envoyer un mail de confirmation de commande:
     public function postPersist(LifecycleEventArgs $args)
-    {        var_dump('hhhhhhh');
+    {        
 
         $entity = $args->getObject();
         // Vérifier que l'entité est une commande
         if (!$entity instanceof \App\Entity\Commande) {
             return;
         }
+        //$this->logger->critical('AAAAAA'.print_r($this->session));
         // Récupere le panier:
-        $panier=$this->session->get('panier',[]);
+
+        $request = $this->requestStack->getCurrentRequest();
+        $session = $request->getSession();
+
+        $panier=$session->get('panier',[]);
     
         // Récupere l'email de l'utilisateur:
         $user=$this->security->getUser();

@@ -49,11 +49,12 @@ class panierservice extends AbstractController
 
     }
 // Ajouter un plat au panier:
-    public function add(Request $request, SessionInterface $session){
+    // public function add(Request $request, SessionInterface $session){  // test debug
+        public function add(Request $request){
         if($request->attributes->get('id')) { 
             $id=$request->attributes->get('id');
+            $session=$request->getSession();     // test debug
             $panier=$session->get('panier',[]);
-            $id = $request->attributes->get('id');
             // si le plat existe dans le panier on garde sa quantité sinon on l'initialise à 0:
             $panier[$id] = $panier[$id] ?? 0;
             // puis on l'incrémente:
@@ -65,9 +66,11 @@ class panierservice extends AbstractController
 
     }
 // Retire un plat du panier:
-    public function remove(Request $request, SessionInterface $session){
+    // public function remove(Request $request, SessionInterface $session){ // test debug
+        public function remove(Request $request){
         // je recupere l'id du lien:
         $id=$request->attributes->get('id');
+        $session=$request->getSession();     // test debug
         $panier=$session->get('panier',[]);
 
         foreach($panier as $idd => $quantity){
@@ -87,8 +90,10 @@ class panierservice extends AbstractController
         ]);
     }  
 // Supprime un plat du panier:
-    public function delete(Request $request, SessionInterface $session){
+    // public function delete(Request $request, SessionInterface $session){ // test debug
+        public function delete(Request $request){
         $id=$request->attributes->get('id');
+        $session=$request->getSession();     // test debug
         $panier=$session->get('panier',[]);
 
         if($panier[$id]){
