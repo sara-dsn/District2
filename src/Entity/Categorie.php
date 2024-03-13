@@ -2,6 +2,10 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use App\Entity\Plat;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CategorieRepository;
@@ -10,6 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
+#[ApiResource]
 class Categorie
 {
     #[ORM\Id]
