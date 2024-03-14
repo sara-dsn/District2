@@ -22,32 +22,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CommandeController extends AbstractController
 {
-    private $mailer;
     private $userRepo;
-    private $Logger;
-    private $PlatRepo;
-    public function __construct( MailerInterface $mailer,PlatRepository $PlatRepo, LoggerInterface $Logger, UserRepository $userRepo)
+    public function __construct( UserRepository $userRepo)
     {
-        $this->PlatRepo = $PlatRepo;
-        $this->Logger = $Logger;
         $this->userRepo=$userRepo;
-        $this->mailer =$mailer;
     }
 
     #[Route('/commande', name: 'app_commande')]
-    public function commande(EntityManagerInterface $EntityManager, Request $request, PlatRepository $PlatRepo , LoggerInterface $Logger, Security $security, MailerInterface $mailer, panierservice $sm): Response
+    public function commande(EntityManagerInterface $EntityManager, Request $request, PlatRepository $PlatRepo , LoggerInterface $Logger, Security $security): Response
     {
-
         // Récupere le panier:
         $session=$request->getSession();
         $panier=$session->get('panier',[]);
 
-       
-        
         // Créer le formulaire:
         $form=$this->createForm(CommandeType::class);
         $form->handleRequest($request);
-
         
         // Pour afficher le récapitulatif du panier:
         $classe= new panierservice( $PlatRepo, $Logger);
@@ -55,33 +45,30 @@ class CommandeController extends AbstractController
         $total=$fonction['total'];
         $tablePlat=$fonction['tablePlat'];
 
-// Si le formulaire est envoyé , on envoie le mail de confirmation de commande:
+        // Si le formulaire est envoyé , on envoie le mail de confirmation de commande:
         if($form->isSubmitted() && $form->isValid()){
-          // Pour afficher le récapitulatif du panier:
-$classe= new panierservice( $PlatRepo, $Logger);
-$fonction=$classe->list($request);
-$total=$fonction['total'];
+            // Pour afficher le récapitulatif du panier:
+            $classe= new panierservice( $PlatRepo, $Logger);
+            $fonction=$classe->list($request);
+            $total=$fonction['total'];
 
+            $user=$security->getUser();
+            $email=$user->getUserIdentifier();
+            $userAuth=$this->userRepo->findOneBy(['email'=>$email],null);
+            $id=$userAuth->getId();
+            $date=new DateTime('now');
 
-$user=$security->getUser();
-$email=$user->getUserIdentifier();
-$userAuth=$this->userRepo->findOneBy(['email'=>$email],null);
-$id=$userAuth->getId();
-$date=new DateTime('now');
+            // On insere dans la base de donné:
+            $commande= new Commande();
+            $commande->setDateCommande($date);
+            $commande->setTotal($total);
+            $commande->setEtat(0);
+            $commande->setUtilisateur($user);
 
+            $EntityManager->persist($commande);
+            $EntityManager->flush();
 
-// On insere dans la base de donné:
-$commande= new Commande();
-$commande->setDateCommande($date);
-$commande->setTotal($total);
-$commande->setEtat(0);
-$commande->setUtilisateur($user);
-
-$EntityManager->persist($commande);
-$EntityManager->flush();
-
-return $this->redirectToRoute('app_livreur');
-
+            return $this->redirectToRoute('app_livreur');
         }
 
         return $this->render('formulaire/commande.html.twig', [

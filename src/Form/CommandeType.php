@@ -3,11 +3,11 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class CommandeType extends AbstractType
 {
@@ -15,16 +15,19 @@ class CommandeType extends AbstractType
     {
         $builder
           
-               //  name du champ     type de champ
-            ->add('adresseLivraison',TextType::class, [
-                'label'=>'Adresse de Livraison :',
-                'label_attr' => [
-                    'style' => 'white-space: nowrap;',],
-                "attr"=>[
+        //  name du champ     type de champ
+        ->add('adresseLivraison',TextType::class, [
+            'label'=>'Adresse de Livraison :',
+            'label_attr' => [
+                            'style' => 'white-space: nowrap;',
+                            ],
+            "attr"=>[
                     'class'=>'form-control form-control-lg rounded col-12 '
-                ],
-                'required'=>true,
-            ])
+                    ],
+            'required'=>true,
+        ])
+      
+        
         ->add('adresseFacturation',TextType::class, [
             'label'=>'Adresse de Facturation :',
             'label_attr' => [
@@ -35,6 +38,7 @@ class CommandeType extends AbstractType
             "required"=>false,
 
         ])
+
         ->add("same", RadioType::class ,[
             "label"=>"L'adresse de livraison et de facturation sont les mêmes.",
             'label_attr' => [
@@ -42,24 +46,27 @@ class CommandeType extends AbstractType
             "required"=>false,
 
         ])
+
         ->add('MoyenPaiment', ChoiceType::class,[
             "label"=>'Moyen de paiment :',
             'label_attr' => [
-                'style' => 'white-space: nowrap;',],
+                            'style' => 'white-space: nowrap;',
+                            ],
             "choices"=>[
-                'Carte Bancaire'=>'carte',
-                'Paypal'=>'paypal',
-            ],
+                        'Carte Bancaire'=>'carte',
+                        'Paypal'=>'paypal',
+                        ],
             "expanded"=>true,
             'multiple'=>false,
             'choice_attr'=>[
-                'Carte Bancaire'=>['class'=>'mb-2'],
-                'Paypal'=>['class'=>' mb-2'],
-            ],
+                            'Carte Bancaire'=>['class'=>'mb-2'],
+                            'Paypal'=>['class'=>' mb-2'],
+                            ],
             'choice_label' => function ($value, $key, $index) {
                 if ($value === 'carte') {
                     return ' ' ;
-                } elseif ($value === 'paypal') {
+                } 
+                elseif ($value === 'paypal') {
                     return ' ' ;
                 }
                 return $key;
@@ -67,16 +74,17 @@ class CommandeType extends AbstractType
             
             
         ])
+
         ->add("CGU", RadioType::class ,[
             "label"=>"J'accepte les ",
-            'label_attr' => [
-                'style' => 'white-space: nowrap;',],
+            'label_attr'=>[
+                            'style' => 'white-space: nowrap;',
+                        ],
             "attr"=>[
-                "class"=>"form-check-input mr-5",
-            ],                
+                    "class"=>"form-check-input mr-5",
+                    ],                
             "required"=>true,
-        ])
-        ;
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
