@@ -90,7 +90,7 @@ body{
     background-color:#970747;
 } */
 .taille{
-padding-top:2%;
+margin-top:4%;
     height:75%; 
  }
  .alert{
@@ -100,7 +100,7 @@ padding-top:2%;
     background-color: black;
  }
   .himg{
-    padding-top:3%;
+    margin-top:3%;
      height:42%;
     }
 
@@ -108,12 +108,7 @@ padding-top:2%;
         height:450px;
     } */
 
-    .card-body{
-        padding-right:0%;
-        padding-left: 0%;
-        margin-bottom:0%;
-      
-    }
+ 
     .hauteur{
         height: 22%;
     }

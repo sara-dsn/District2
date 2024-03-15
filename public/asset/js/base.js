@@ -78,12 +78,13 @@ $(document).ready(function () {
             test.empty();
             a.empty();
             pp.empty();
+            
             $.each(plt, function (data, uno) {
                 var idcat=uno.id_categorie;
                 if (idcat == id){ 
                     var t = $( ` 
-                    <div class="card size col-12 col-md-3 ml-3 mx-1 ">
-                        <img class="card-img-top rounded himg img-fluid"  src="asset/food/${uno.image}" alt="${uno.libelle}">
+                    <div class="card size col-12 col-md-4 ml-3 mt-3 mx-1 ">
+                        <img class="card-img-top   rounded himg img-fluid "  src="asset/food/${uno.image}" alt="${uno.libelle}">
                         <div class="card-body font-italic">
                             <h5 class="  card-title font-weight-bold ">${uno.libelle}</h5>
                             <p class="card-text ">${uno.description} <br> Menu: ${uno.prix} € </p>

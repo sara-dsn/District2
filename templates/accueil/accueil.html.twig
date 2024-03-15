@@ -21,11 +21,11 @@
             <div class="  row  col-10 col-md-8 d" >   
 {% for categories in categorie %}  
 {# {% if categories.active == 1 %}        autre maniere de faire         #}
-                    <div class="t d-none d-md-block cat card custom-card col-3 ml-2 mt-2 mr-2 mb-4 ">
-                        <img class=" card-img-top taille rounded img-fluid" src="asset/category/{{ categories.image }}" alt="{{ categories.libelle }}">
-                        <div class="card-body pl-3">
+                    <div class="t d-none d-md-block cat card custom-card col-12 col-md-3 ml-2 mt-2 mr-2 mb-4 ">
+                        <img class=" card-img-top taille rounded img-fluid " src="asset/category/{{ categories.image }}" alt="{{ categories.libelle }}">
+                        <div class="card-body  pl-3">
                             <h3 value="{{ categories.id }}" class=" titre card-title font-weight-bold  id">{{ categories.libelle }}</h3>
-                            <span class="stock text-success">Disponible<span>
+                            <span class="stock text-success mb-2">Disponible<span>
                         
                         </div>
                     </div>
@@ -44,15 +44,15 @@
                       {% for plt in plat %}
                       {% if plt.active == 1 %}
                 <div class="card col-12  pb-2 ml-1 mb-1 mr-1 col-md-3 position-relative ">
-                    <img class="card-img-top img-fluid rounded himg" src="asset/food/{{ plt.image }}" alt="{{ plt.libelle }}">
+                    <img class="card-img-top mt-3 img-fluid rounded himg" src="asset/food/{{ plt.image }}" alt="{{ plt.libelle }}">
                     <div class="card-body ">
                         <h5 class="card-title font-weight-bold">{{ plt.libelle }}</h5>
                         <p class="card-text ">{{ plt.description }} <br> Menu: {{ plt.prix }} €</p><br> 
-                        <div class="d-flex justify-content-end  mb-5">               
-                            <img class="img-fluid position-absolute  img-fluid col-5 mb-5" src="asset/cat.fond/bestseller.png" alt="best seller"> 
-                        </div>
+                    </div> 
+                    <div class="  row d-flex justify-content-center">
+                    <a href="{{ path('add',{'id':plt.id}) }}" id="btnplt" type="submit" value="{{ plt.id }}" class="btn  col-4 t"><img class="img-fluid " src="{{asset('asset/cat.fond/panierbtn.png')}}" alt="ajouter au panier"></a>        
+                        <div><img class="img-fluid position-absolute  img-fluid col-5 mb-5 mr-5" src="asset/cat.fond/bestseller.png" alt="best seller"> </div>
                     </div>
-                    <div class="mt-auto  text-center"> <a href="{{ path('add',{'id':plt.id}) }}" id="btnplt" type="submit" value="{{ plt.id }}" class="btn  col-4 t"><img class="img-fluid " src="{{asset('asset/cat.fond/panierbtn.png')}}" alt="ajouter au panier"></a></div>
                 </div>
                 {% endif %}
     {% endfor %}
@@ -68,7 +68,7 @@
             <div class=" row col-10 d-none d-md-none   ml-3 d-flex justify-content-center" > 
             {# <?php foreach ($best as $plat) { #}
              {% for plt in platsm %}
-                <div class="card col-12  pb-2 ml-1 mb-1 mr-1 col-md-3 position-relative">
+                <div class="card col-12 mt-3 pb-2 ml-1 mb-1 mr-1 col-md-3 position-relative">
                     <img class="card-img-top img-fluid rounded himg" src="asset/food/{{ plt.image }}" alt="{{ plt.libelle}}">
                     <div class="card-body ">
                         <h5 class="card-title font-weight-bold">{{ plt.libelle }}</h5>
