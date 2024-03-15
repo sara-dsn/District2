@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-    $('label[for="commande_adresseLivraison"]').removeClass('col-form-label col-sm-2 required');
     //alert("abracadabra");
     var btn=$("#bottom"); 
     var btn3=$("#btnplt");
@@ -53,16 +52,17 @@ $(document).ready(function () {
             
             miseajour(pla);
             function miseajour(result) {
-                $.each(result, function (element, uno) {
+                $.each(result, function (data, uno) {
                     var txt = $( ` 
                         <div class="card   col-10 col-md-2 mx-1  ">
                             <img class="card-img-top rounded img-fluid himg" src="asset/food/${uno.image}" alt="${uno.libelle}">
                             <div class="card-body font-italic ">
                                 <h5 class="card-title  font-weight-bold ">${uno.libelle}</h5>
                                 <p class="card-text ">${uno.description} <br> Menu: ${uno.prix} € </p>
-                                <div class="mt-auto  text-center"> <a href="{{ path('add',{'id':${ uno.id }}) }}" id="btnplt" type="submit" value="${ uno.id }" class="btn  col-4 t"><img class="img-fluid " src="{{asset('asset/cat.fond/panierbtn.png')}}" alt="ajouter au panier"></a></div>
+                                <div class="mt-auto  text-center"> <a href="/add/${uno.id_plat}" id="btnplt" type="submit" value="${uno.id_plat }" class="btn  col-4 t"><img class="img-fluid " src="/asset/cat.fond/panierbtn.png" alt="ajouter au panier"></a></div>
                                 </div>`);
                     a.append(txt);
+                    
                 });
             }
         };
@@ -78,7 +78,7 @@ $(document).ready(function () {
             test.empty();
             a.empty();
             pp.empty();
-            $.each(plt, function (element, uno) {
+            $.each(plt, function (data, uno) {
                 var idcat=uno.id_categorie;
                 if (idcat == id){ 
                     var t = $( ` 
@@ -87,11 +87,13 @@ $(document).ready(function () {
                         <div class="card-body font-italic">
                             <h5 class="  card-title font-weight-bold ">${uno.libelle}</h5>
                             <p class="card-text ">${uno.description} <br> Menu: ${uno.prix} € </p>
-                            <div class="mt-auto  text-center"> <a href="{{ path('add',{'id':${ uno.id }}) }}" id="btnplt" type="submit" value="${ uno.id }" class="btn  col-4 t"><img class="img-fluid " src="{{asset('asset/cat.fond/panierbtn.png')}}" alt="ajouter au panier"></a></div>
+                            <div class="mt-auto  text-center"> <a href="/add/${uno.id_plat}" id="btnplt" type="submit" value="${uno.id_plat }" class="btn  col-4 t"><img class="img-fluid " src="/asset/cat.fond/panierbtn.png" alt="ajouter au panier"></a></div>
                             </div>`);
                     visible.hide();
                     test.append(t);
                     btn3.show();
+                    // alert(uno);
+                    // console.log(uno);
 
                 };
             });

@@ -25,9 +25,13 @@ class panierservice extends AbstractController
         // on créer un tableau '$plats' et une variable pour stocker le total final:
         $tablePlats = [];
         $total=0;
+        var_dump($panier);
         foreach ($panier as $id => $quantity) {
             // avec les id du panier on recupère chaque plat:
             $plat = $this->platRepo->find($id);
+            // var_dump($panier);
+            // var_dump($id);
+            // var_dump($quantity);
             $prix=$plat->getPrix()*$quantity;
             $total=$total+$prix;
             // si le plat existe on le stock dans le tableau '$plat' créée juste au dessus:
@@ -49,12 +53,13 @@ class panierservice extends AbstractController
 
     }
 // Ajouter un plat au panier:
-    // public function add(Request $request, SessionInterface $session){  // test debug
-        public function add(Request $request){
-        if($request->attributes->get('id')) { 
+        public function add(Request $request){ 
             $id=$request->attributes->get('id');
-            $session=$request->getSession();     // test debug
+            $session=$request->getSession();            
             $panier=$session->get('panier',[]);
+   
+        if($request->attributes->get('id')) { 
+           
             // si le plat existe dans le panier on garde sa quantité sinon on l'initialise à 0:
             $panier[$id] = $panier[$id] ?? 0;
             // puis on l'incrémente:

@@ -50,7 +50,31 @@
         "libelle": "Asian Food",
         "image": "asiatique.webp",
         "active": "No"
-       }
+       },
+       {
+         "id_categorie": 17,
+         "libelle": "Indien",
+         "image": "indien.webp",
+         "active": "yes"
+        },
+        {
+         "id_categorie": 33,
+         "libelle": "Dessert",
+         "image": "dessert.webp",
+         "active": "yes"
+        },
+        {
+         "id_categorie": 34,
+         "libelle": "Boisson froide",
+         "image": "boisson_froide.webp",
+         "active": "yes"
+        },
+        {
+         "id_categorie": 35,
+         "libelle": "Boisson Chaude",
+         "image": "boisson_chaud.webp",
+         "active": "yes"
+        }
     ],
     "plat":[
      {
@@ -150,6 +174,51 @@
       "prix": 10,
       "image": "Korma.webp",
       "id_categorie": 17,
+      "active": "Yes"
+     },
+     {
+      "id_plat": 39,
+      "libelle": "Banana Split",
+      "description": "Succomber au classique banana split composé de banane, boule de sorbet fraise, boule de glace vanille, boule de glace chocolat, sauce chocolat chaud, crème fouettée et ses éclats croquant de noix pécan enrobé de chocolat.",
+      "prix": 6,
+      "image": "bananaSplit.webp",
+      "id_categorie": 33,
+      "active": "Yes"
+     },
+     {
+      "id_plat": 40,
+      "libelle": "Café latte ",
+      "description": "L'intensité de notre espresso rencontre la douceur du lait chauffé à la vapeur, le tout recouvert d'une fine couche de mousse de lait. ",
+      "prix": 3,
+      "image": "cafe_latte.webp",
+      "id_categorie": 35,
+      "active": "Yes"
+     },
+     {
+      "id_plat": 41,
+      "libelle": "Frappuccino Matcha",
+      "description": "Essayez votre Matcha préféré dans un Frappuccino - Le Matcha est combiné avec du lait , une sauce saveur chocolat,  et de la vanille et garni de crème fouettée. ",
+      "prix": 4,
+      "image": "tagliatelle.webp",
+      "id_categorie": 33,
+      "active": "Yes"
+     },
+     {
+      "id_plat": 42,
+      "libelle": "Iced Caramel Macchiato",
+      "description": "Du lait saveur vanille taché d'un espresso surmonté d'un nappage saveur caramel, servi glacé.",
+      "prix": 4,
+      "image": "tagliatelle.webp",
+      "id_categorie": 34,
+      "active": "Yes"
+     },
+     {
+      "id_plat": 43,
+      "libelle": "Virgin Mojito",
+      "description": "Un cocktail mojito à la menthe fraîche et au citron sans alcool, à consommer sans modération!",
+      "prix": 4,
+      "image": "tagliatelle.webp",
+      "id_categorie": 34,
       "active": "Yes"
      }
     ]

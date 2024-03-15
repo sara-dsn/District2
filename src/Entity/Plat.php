@@ -12,7 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: PlatRepository::class)]
-#[ApiResource]
+// #[ApiResource]
 class Plat
 {
     #[ORM\Id]

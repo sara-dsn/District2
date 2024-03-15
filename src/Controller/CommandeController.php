@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use DateTime;
+use App\Entity\Detail;
 use App\Entity\Commande;
 use App\Form\CommandeType;
 use Psr\Log\LoggerInterface;
@@ -67,6 +68,16 @@ class CommandeController extends AbstractController
 
             $EntityManager->persist($commande);
             $EntityManager->flush();
+
+            foreach($panier as $id => $quantity){
+                $plt=$PlatRepo->find($id);
+                $detail=new Detail();
+                $detail->setQuantite($quantity);
+                $detail->setCommande($commande);
+                $detail->setPlat($plt);
+                $EntityManager->persist($detail);
+                $EntityManager->flush();
+            }
 
             return $this->redirectToRoute('app_livreur');
         }

@@ -28,9 +28,9 @@ class CatalogueController extends AbstractController
     {
         // $session=$request->getSession();
 
-        $categorie=$this->categorieRepo->findBy( ['active'=>1], null ,$limit='6');
+        $categorie=$this->categorieRepo->findBy( ['active'=>1], null ,$limit='9');
         $plat=$this->platRepo->findBy( ['active'=>1], null ,$limit='3');
-        $platsm=$this->platRepo->findBy( ['active'=>1], null ,$limit='6');
+        $platsm=$this->platRepo->findBy( ['active'=>1], null ,$limit='9');
 
         return $this->render('accueil/accueil.html.twig', [
             'categorie'=>$categorie,
@@ -43,7 +43,7 @@ class CatalogueController extends AbstractController
     public function categorie(Request $request): Response
     {
 
-        $categorie=$this->categorieRepo->findBy( ['active'=>1], null ,$limit='6');
+        $categorie=$this->categorieRepo->findBy( ['active'=>1], null ,$limit='9');
 
         return $this->render('accueil/categorie.html.twig', [
         'categorie'=>$categorie
@@ -53,7 +53,7 @@ class CatalogueController extends AbstractController
     public function plat(Request $request): Response
     {
 
-        $plt=$this->platRepo->findBy( ['active'=>1], null ,$limit='6');
+        $plt=$this->platRepo->findBy( ['active'=>1], null ,$limit='9');
         return $this->render('accueil/plat.html.twig', [
             'plat'=>$plt
         ]);
