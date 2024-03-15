@@ -199,8 +199,7 @@
       "libelle": "Frappuccino Matcha",
       "description": "Essayez votre Matcha préféré dans un Frappuccino - Le Matcha est combiné avec du lait , une sauce saveur chocolat,  et de la vanille et garni de crème fouettée. ",
       "prix": 4,
-      "image": "tagliatelle.webp",
-      "id_categorie": 33,
+      "image": "Frappuccion_matcha.webp",
       "active": "Yes"
      },
      {
@@ -208,7 +207,7 @@
       "libelle": "Iced Caramel Macchiato",
       "description": "Du lait saveur vanille taché d'un espresso surmonté d'un nappage saveur caramel, servi glacé.",
       "prix": 4,
-      "image": "tagliatelle.webp",
+      "image": "iced_caramel_macchiato.webp",
       "id_categorie": 34,
       "active": "Yes"
      },
@@ -217,7 +216,7 @@
       "libelle": "Virgin Mojito",
       "description": "Un cocktail mojito à la menthe fraîche et au citron sans alcool, à consommer sans modération!",
       "prix": 4,
-      "image": "tagliatelle.webp",
+      "image": "virgin_mojito.webp",
       "id_categorie": 34,
       "active": "Yes"
      }
