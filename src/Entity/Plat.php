@@ -12,44 +12,41 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: PlatRepository::class)]
-#[ApiResource (
-    normalizationContext:['groups'=>['read']],
-    denormalizationContext:['groups'=>['write']],
-    )]class Plat
+#[ApiResource]
+class Plat
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 60)]
-    #[Groups(['read','write'])]
+    // #[Groups(['read','write'])]
     private ?string $libelle = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['read','write'])]
+    // #[Groups(['read','write'])]
     private ?string $image = null;
 
     #[ORM\Column]
-    #[Groups(['read','write'])]
+    // #[Groups(['read','write'])]
     private ?bool $active = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['read','write'])]
+    // #[Groups(['read','write'])]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
-    #[Groups(['read','write'])]
+    // #[Groups(['read','write'])]
     private ?string $prix = null;
 
     #[ORM\ManyToOne(inversedBy: 'categorie')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups(['read'])]
+    // #[Groups(['read'])]
     private ?Categorie $categorie = null;
 
     #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'plat')]
-    #[Groups(['read'])]
+    // #[Groups(['read'])]
     private Collection $details;
 
     public function __construct()

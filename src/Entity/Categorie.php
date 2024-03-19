@@ -14,33 +14,29 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
-#[ApiResource (
-normalizationContext:['groups'=>['read']],
-denormalizationContext:['groups'=>['write']],
-)]
+#[ApiResource]
 class Categorie
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['read','write'])]
+    // #[Groups(['read'])]
     private ?string $libelle = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['read','write'])]
+    // #[Groups(['read','write'])]
     private ?string $image = null;
 
     #[ORM\Column]
-    #[Groups(['read','write'])]
+    // #[Groups(['read'])]
     private ?bool $active = null;
 
 
     #[ORM\OneToMany(targetEntity: Plat::class, mappedBy: 'categorie', orphanRemoval: true)]
-    #[Groups(['read'])]
+    // #[Groups(['read'])]
     private Collection $categorie;
 
     public function __construct()

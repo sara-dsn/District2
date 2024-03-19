@@ -13,24 +13,28 @@
         </div> 
         <div class="col-12 col-md-10 justify-content-center mt-4 ">
      
-            <h2 class="mt-3">Inscription</h2>
-            <div class="col-12 col-md-5mt-3">
-                {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger " role="alert">{{ flash_error }}</div>
-    {% endfor %}
-<div class="mt-4 col-12 col-md-5">
-    {{ form_errors(inscription) }}
+          <h2 class="mt-3 ">Inscription</h2>
+          <div class="col-12   mt-3">
+            {% for flash_error in app.flashes('verify_email_error') %}
+              <div class="alert alert-danger " role="alert">{{ flash_error }}</div>
+            {% endfor %}
+            <div class="mt-4 col-12 col-md-5">
+            {{ form_errors(inscription) }}
+            {{ form_start(inscription) }}
 
-    {{ form_start(inscription) }}
-        {{ form_row(inscription.email) }}
-        {{ form_row(inscription.plainPassword, {
-            label: 'Mot de passe',
-        }) }}
-        {{ form_row(inscription.agreeTerms) }}
-
-        <button type="submit" class="btn btn-dark t d-flex justify-content-center btn-sm">Inscription</button>
-    {{ form_end(inscription) }}
-</div>
+            {{ form_row(inscription.prenom) }}
+            {{ form_row(inscription.nom) }}
+            {{ form_row(inscription.adresse) }}
+            {{ form_row(inscription.ville) }}
+            {{ form_row(inscription.cp) }}
+            {{ form_row(inscription.telephone) }}
+            {{ form_row(inscription.email) }}
+            {{ form_row(inscription.plainPassword, {
+                label: 'Mot de passe',}) }}
+            {{ form_row(inscription.agreeTerms) }}
+            <button type="submit" class="btn btn-dark t d-flex justify-content-center btn-sm">Inscription</button>
+            {{ form_end(inscription) }}
+          </div>
             </div>
           </div>
           </div>
