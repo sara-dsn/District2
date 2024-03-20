@@ -25,7 +25,6 @@ class panierservice extends AbstractController
         // on créer un tableau '$plats' et une variable pour stocker le total final:
         $tablePlats = [];
         $total=0;
-        var_dump($panier);
         foreach ($panier as $id => $quantity) {
             // avec les id du panier on recupère chaque plat:
             $plat = $this->platRepo->find($id);
