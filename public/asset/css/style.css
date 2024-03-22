@@ -118,14 +118,14 @@ margin-top:4%;
        .d{ 
         display: none;
        }
-       .card{
-        height:16%;
+       .card-body{
+        max-height: 8%;
        }
        .size{
         min-height: 45%;
         max-height: 49%;
        }
        .cat{
-        height:16%;
+        height:12%;
        }
     }
