@@ -2,7 +2,6 @@ $(document).ready(function () {
 
     //alert("abracadabra");
     var btn=$("#bottom"); 
-    var btn3=$("#btnplt");
     var aff=$("#plats");
     var visible=$("#visible");
     var a = $("#afficher");
@@ -37,7 +36,6 @@ $(document).ready(function () {
         }); 
 
         function search() {
-            btn3.show();
             a.empty();
             test.empty();
             visible.hide();

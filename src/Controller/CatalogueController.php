@@ -27,15 +27,17 @@ class CatalogueController extends AbstractController
     public function accueil(Request $request): Response
     {
         // $session=$request->getSession();
-
+        $bestSeller=$this->platRepo->BestSeller();
         $categorie=$this->categorieRepo->findBy( ['active'=>1], null ,$limit='9');
         $plat=$this->platRepo->findBy( ['active'=>1], null ,$limit='3');
         $platsm=$this->platRepo->findBy( ['active'=>1], null ,$limit='9');
+            var_dump($bestSeller);
 
         return $this->render('accueil/accueil.html.twig', [
             'categorie'=>$categorie,
             'plat'=>$plat,
-            'platsm'=>$platsm
+            'platsm'=>$platsm,
+            'best'=>$bestSeller,
 
         ]);
     }

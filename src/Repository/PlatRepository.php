@@ -36,13 +36,14 @@ class PlatRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Plat
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+   public function BestSeller()
+   {
+    return $this->createQueryBuilder('plat')
+    ->select('plat, SUM(detail.quantite) AS total') // Sélectionnez le total de la quantité de détail
+    ->join('plat.details', 'detail') // Joindre avec l'entité detail
+    ->groupBy('plat') // Regrouper par plat
+    ->orderBy('total', 'DESC') // Trier par quantité totale DESC pour obtenir les meilleurs vendeurs en premier
+    ->getQuery()
+    ->getResult();
+   }
 }
