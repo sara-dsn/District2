@@ -88,8 +88,8 @@ $(document).ready(function () {
                         <div class="card-body font-italic">
                             <h5 class="  card-title font-weight-bold ">${uno.libelle}</h5>
                             <p class="card-text ">${uno.description} <br> Menu: ${uno.prix} € </p>
-                            <div class="mt-auto  text-center"> <a href="/add/${uno.id_plat}" id="btnplt" type="submit" value="${uno.id_plat }" class="btn  col-4 t"><img class="img-fluid " src="/asset/cat.fond/panierbtn.png" alt="ajouter au panier"></a></div>
-                            </div>`);
+                        <div class="mt-auto  text-center"> <a href="/add/${uno.id_plat}" id="btnplt" type="submit" value="${uno.id_plat }" class="btn  col-4 t"><img class="img-fluid " src="/asset/cat.fond/panierbtn.png" alt="ajouter au panier"></a></div>
+                    </div>`);
                     visible.hide();
                     test.append(t);
                     btn3.show();
