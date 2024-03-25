@@ -49,7 +49,7 @@ class CatalogueController extends AbstractController
         'categorie'=>$categorie
         ]);
     }
-    #[Route('/plat', name: 'app_plat')]
+    #[Route('/plats', name: 'app_plat')]
     public function plat(Request $request): Response
     {
 
@@ -92,6 +92,20 @@ class CatalogueController extends AbstractController
     {
 
         return $this->render('message/demande.html.twig', [
+        ]);
+    }
+
+    #[Route('/plats/{categorie_id}', name: 'app_onClickCat')]
+    public function onClickCat($categorie_id):Response
+    {
+        //  Dans $categorie_id on a l'id exacte de la categorie (id = categorie_id), on récupere l'objet categorie en entier:
+        $ctg=$this->categorieRepo->find($categorie_id);
+        // On récupere tout les plats de la categorie (cette fonction est dans l'objet que l'on a récupérer):
+        $plt=$ctg->getPlats();
+
+        return $this->render('accueil/onClickCat.html.twig',[
+            'plat'=>$plt,
+            'categorie'=>$ctg,
         ]);
     }
 }

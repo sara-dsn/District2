@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="col-12 row d-flex justify-content-center">
+        <div class="row col-3  d-none d-md-block">
+            <div class="card border-0 bg-transparent">
+                <div class="card-body">
+                     <img src="{{asset('asset/cat.fond/cuisinier.png')}}" class="card-img-top img-fluid" alt="Cuisinier">
+                </div>
+            </div>
+
+        </div>
+        <div class=" row col-12 col-md-8  " >
+            {% if plat is defined or plat is not empty %}
+                {% for plt in plat %}
+                    <div class="card col-12  pb-2 mb-2 ml-1  mr-2 col-md-3 ">
+                        <img class="card-img-top img-fluid rounded himg" src="{{asset('asset/food/'~ plt.image )}}" alt="{{ plt.libelle }}">
+                        <div class="card-body ">
+                            <h5 class="card-title font-weight-bold">{{ plt.libelle }}</h5>
+                            <p class="card-text ">{{ plt.description }} <br> Menu: {{ plt.prix }} €</p><br>
+                        </div>
+                        <div class="mt-auto  text-center"> <a href="{{ path('add',{'id':plt.id}) }}" id="btnplt" type="submit" value="{{ plt.id }}" class="btn  col-4 t" style="display : show ;"><img class="img-fluid " src="{{asset('asset/cat.fond/panierbtn.png')}}" alt="ajouter au panier"></a></div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+       
+        <div class="w-100 mt-3 d-flex justify-content-center"> <a type="submit" class="btn btn-dark t my-3 " id="btnplt" href="{{path('app_accueil')}}">Retourner sur la page d'acceuil</a></div>
+
+    </div>     
+     
+ 
+  
+{% endblock %}

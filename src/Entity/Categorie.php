@@ -3,15 +3,10 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
-use Symfony\Component\Serializer\Annotation\Groups;
-use App\Entity\Plat;
-use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CategorieRepository;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 #[ApiResource]
@@ -23,28 +18,21 @@ class Categorie
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    // #[Groups(['read'])]
     private ?string $libelle = null;
 
     #[ORM\Column(length: 50)]
-    // #[Groups(['read','write'])]
     private ?string $image = null;
 
     #[ORM\Column]
-    // #[Groups(['read'])]
     private ?bool $active = null;
 
-
     #[ORM\OneToMany(targetEntity: Plat::class, mappedBy: 'categorie', orphanRemoval: true)]
-    // #[Groups(['read'])]
-    private Collection $categorie;
+    private Collection $plats;
 
     public function __construct()
     {
-        $this->categorie = new ArrayCollection();
+        $this->plats = new ArrayCollection();
     }
-
-  
 
     public function getId(): ?int
     {
@@ -88,39 +76,32 @@ class Categorie
     }
 
     /**
-     * @return Collection<int, plat>
+     * @return Collection<int, Plat>
      */
-  
-
-    /**
-     * @return Collection<int, plat>
-     */
-    public function getCategorie(): Collection
+    public function getPlats(): Collection
     {
-        return $this->categorie;
+        return $this->plats;
     }
 
-    public function addCategorie(plat $categorie): static
+    public function addPlat(Plat $plat): static
     {
-        if (!$this->categorie->contains($categorie)) {
-            $this->categorie->add($categorie);
-            $categorie->setCategorie($this);
+        if (!$this->plats->contains($plat)) {
+            $this->plats->add($plat);
+            $plat->setCategorie($this);
         }
 
         return $this;
     }
 
-    public function removeCategorie(plat $categorie): static
+    public function removePlat(Plat $plat): static
     {
-        if ($this->categorie->removeElement($categorie)) {
+        if ($this->plats->removeElement($plat)) {
             // set the owning side to null (unless already changed)
-            if ($categorie->getCategorie() === $this) {
-                $categorie->setCategorie(null);
+            if ($plat->getCategorie() === $this) {
+                $plat->setCategorie(null);
             }
         }
 
         return $this;
     }
-
-   
 }

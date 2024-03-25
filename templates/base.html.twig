@@ -59,15 +59,15 @@
                     </div>
                 </div>
                 <div class="item-content position-relative d-md-none">
-                    <img class="img-fluid w-100 mt-2" id="bandeau" src="asset/cat.fond/fond-bordeau.png"alt="bandeau de décoration couleur bordeaux">
+                    <img class="img-fluid w-100 mt-2" id="bandeau" src="{{asset('asset/cat.fond/fond-bordeau.png')}}"alt="bandeau de décoration couleur bordeaux">
                     <div class="position-absolute d-flex justify-content-between w-100 bandeausm">
-                        <img class="img-fluid w-25" alt="verre de vin" src="asset/cat.fond/vin.png">
-                        <img class="img-fluid w-25" alt="cuisinier" src="asset/cat.fond/petitCuisinier.png">
+                        <img class="img-fluid w-25" alt="verre de vin" src="{{asset('asset/cat.fond/vin.png')}}">
+                        <img class="img-fluid w-25" alt="cuisinier" src="{{asset('asset/cat.fond/petitCuisinier.png')}}">
                     </div>
                 </div>
                 <div class="item-content position-relative mt-0 d-none d-md-block mt-3 mb-4 ">
-                    <video autoplay loop muted playsinline poster="asset/the_district_brand/video.mp4" id="coupe"class=" w-100 ">
-                        <source src="asset/the_district_brand/video.mp4" type="video/mp4">
+                    <video autoplay loop muted playsinline poster="{{asset('asset/the_district_brand/video.mp4')}}" id="coupe"class=" w-100 ">
+                        <source src="{{asset('asset/the_district_brand/video.mp4')}}" type="video/mp4">
                     </video>
                     <div class="search-bar position-absolute">
                         <nav class="navbar navbar-light bg-transparent d-none d-md-block">
@@ -84,7 +84,6 @@
                 <div class="w-100 row d-flex  justify-content-center">            
                     <div class="row col-10 justify-content-center" >
                         <div id="gg" class="row justify-content-center mt-4 col-8 "></div>  
-                        <div class="w-100 mt-3 d-flex justify-content-center"> <a type="submit" class="btn btn-dark t my-3 " id="btnplt" href="{{path('app_accueil')}}">Retourner sur la page d'acceuil</a></div>
                 
                     </div>
                 </div>
@@ -96,7 +95,7 @@
                 <div class="row d-flex justify-content-center">
                     <div class="card border-0 bg-transparent">
                         <div class="card-body">
-                            <img src="asset/the_district_brand/icone.png" usemap="#image-map" class="card-img-top img-fluid"alt="reseaux sociaux">
+                            <img src="{{asset('asset/the_district_brand/icone.png')}}" usemap="#image-map" class="card-img-top img-fluid" alt="reseaux sociaux">
                             <map name="image-map">
                                 <area shape="rect" coords="10,100,92,190"  href="#" alt="logo orange">
                                 <area shape="rect" coords="92,100,133,190" href="https://www.instagram.com/sara.tdg/" alt="Instagram">

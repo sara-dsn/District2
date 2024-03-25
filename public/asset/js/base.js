@@ -67,38 +67,7 @@ $(document).ready(function () {
             }
         };
         
-        //  PLATS AFFICHAGE SELON CATEGORIE CLIQUÉE:                
-        $(".cat").click(function () {
-            var id=$(this).find(".id").attr("value");
-            plat(id);
-            btn.show();
-        });
-
-        function plat(id){
-            test.empty();
-            a.empty();
-            pp.empty();
-            
-            $.each(plt, function (data, uno) {
-                var idcat=uno.id_categorie;
-                if (idcat == id){ 
-                    var t = $( ` 
-                    <div class="card size col-12 col-md-4 ml-3 mt-3 mx-1 ">
-                        <img class="card-img-top   rounded himg img-fluid "  src="asset/food/${uno.image}" alt="${uno.libelle}">
-                        <div class="card-body font-italic">
-                            <h5 class="  card-title font-weight-bold ">${uno.libelle}</h5>
-                            <p class="card-text ">${uno.description} <br> Menu: ${uno.prix} € </p>
-                        <div class="mt-auto  text-center"> <a href="/add/${uno.id_plat}" id="btnplt" type="submit" value="${uno.id_plat }" class="btn  col-4 t"><img class="img-fluid " src="/asset/cat.fond/panierbtn.png" alt="ajouter au panier"></a></div>
-                    </div>`);
-                    visible.hide();
-                    test.append(t);
-                    btn3.show();
-                    // alert(uno);
-                    // console.log(uno);
-
-                };
-            });
-        };
+        
     });
 
     //Formulaire contact 

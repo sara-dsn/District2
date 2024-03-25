@@ -40,14 +40,15 @@ class Plat
     // #[Groups(['read','write'])]
     private ?string $prix = null;
 
-    #[ORM\ManyToOne(inversedBy: 'categorie')]
-    #[ORM\JoinColumn(nullable: false)]
-    // #[Groups(['read'])]
-    private ?Categorie $categorie = null;
+
 
     #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'plat')]
     // #[Groups(['read'])]
     private Collection $details;
+
+    #[ORM\ManyToOne(inversedBy: 'plats')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Categorie $categorie = null;
 
     public function __construct()
     {
@@ -123,17 +124,7 @@ class Plat
 
    
 
-    public function getCategorie(): ?Categorie
-    {
-        return $this->categorie;
-    }
 
-    public function setCategorie(?Categorie $categorie): static
-    {
-        $this->categorie = $categorie;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, detail>
@@ -161,6 +152,18 @@ class Plat
                 $detail->setPlat(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): static
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }
